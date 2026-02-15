@@ -1,0 +1,50 @@
+---
+layout: default
+---
+
+<div class="hero">
+  <h1>{{ site.headstones.size }} Projects<br>That Never Were</h1>
+  <p>{{ site.description }}</p>
+</div>
+
+<div class="stats-bar">
+  <div class="stat-item">
+    <div class="stat-number">{{ site.headstones.size }}</div>
+    <div class="stat-label">Projects Buried</div>
+  </div>
+  <div class="stat-item">
+    <div class="stat-number">{{ site.headstones | map: 'cause' | uniq | size }}</div>
+    <div class="stat-label">Causes of Death</div>
+  </div>
+  <div class="stat-item">
+    {%- assign total_months = 0 -%}
+    {%- for headstone in site.headstones -%}
+      {%- assign birth = headstone.birth | split: '-' -%}
+      {%- assign death = headstone.death | split: '-' -%}
+      {%- assign months = death[0] | minus: birth[0] | times: 12 | plus: death[1] | minus: birth[1] -%}
+      {%- assign total_months = total_months | plus: months -%}
+    {%- endfor -%}
+    <div class="stat-number">{{ total_months | divided_by: site.headstones.size | default: 0 }}</div>
+    <div class="stat-label">Avg Months Alive</div>
+  </div>
+  <div class="stat-item">
+    <div class="stat-number">{{ site.time | date: '%Y' }}</div>
+    <div class="stat-label">Still Learning</div>
+  </div>
+</div>
+
+<div class="headstone-grid">
+  {%- for headstone in site.headstones -%}
+    <a href="{{ headstone.url | relative_url }}" class="headstone-card">
+      <div class="headstone-meta">
+        <span>{{ headstone.birth }} — {{ headstone.death }}</span>
+        <span class="headstone-cause">{{ headstone.cause }}</span>
+      </div>
+      <h2>{{ headstone.name }}</h2>
+      <p class="headstone-dates">Lived {{ headstone.birth | date: '%b %Y' }} to {{ headstone.death | date: '%b %Y' }}</p>
+      <div class="headstone-epitaph">
+        {{ headstone.epitaph }}
+      </div>
+    </a>
+  {%- endfor -%}
+</div>

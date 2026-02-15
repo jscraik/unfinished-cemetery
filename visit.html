@@ -1,0 +1,36 @@
+---
+layout: default
+title: Visit
+permalink: /visit/
+---
+
+<div class="visit-container">
+  <h1>🪦</h1>
+  <p style="color: var(--text-secondary); margin-bottom: 2rem;">
+    Click to receive wisdom from a project that came before.
+  </p>
+  
+  <button class="visit-button" onclick="visitRandom()">
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+      <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"></path>
+    </svg>
+    Visit Random Project
+  </button>
+</div>
+
+<script>
+const headstones = [
+  {%- for headstone in site.headstones -%}
+    {
+      name: {{ headstone.name | jsonify }},
+      url: {{ headstone.url | relative_url | jsonify }}
+    }{%- unless forloop.last -%},{%- endunless -%}
+  {%- endfor -%}
+];
+
+function visitRandom() {
+  if (headstones.length === 0) return;
+  const random = headstones[Math.floor(Math.random() * headstones.length)];
+  window.location.href = random.url;
+}
+</script>

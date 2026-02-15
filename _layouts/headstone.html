@@ -1,0 +1,38 @@
+---
+layout: default
+---
+
+<article class="headstone-full">
+  <header class="headstone-header">
+    <div class="headstone-meta" style="justify-content: center; gap: 2rem; margin-bottom: 1.5rem;">
+      <span>{{ page.birth }} — {{ page.death }}</span>
+      <span class="headstone-cause">{{ page.cause }}</span>
+    </div>
+    <h1>{{ page.name }}</h1>
+    <p class="meta">Born {{ page.birth | date: '%B %Y' }} • Died {{ page.death | date: '%B %Y' }}</p>
+    
+    {%- if page.repo -%}
+    <p style="margin-top: 1rem;">
+      <a href="{{ page.repo }}" target="_blank" rel="noopener" style="color: var(--accent); text-decoration: none;">
+        View Repository →
+      </a>
+    </p>
+    {%- endif -%}
+  </header>
+
+  <div class="headstone-content">
+    {{ content }}
+    
+    {%- if page.epitaph -%}
+    <blockquote>
+      {{ page.epitaph }}
+    </blockquote>
+    {%- endif -%}
+  </div>
+  
+  <div style="text-align: center; margin-top: 4rem; padding-top: 2rem; border-top: 1px solid var(--border);">
+    <a href="{{ '/' | relative_url }}" style="color: var(--text-secondary); text-decoration: none;">
+      ← Return to Cemetery
+    </a>
+  </div>
+</article>

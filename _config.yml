@@ -1,0 +1,35 @@
+title: Unfinished Cemetery
+email: jamie@brAInwav.com
+description: >-
+  A ritualized archive of abandoned projects.
+  Honoring what died so we can learn what lives.
+baseurl: "/unfinished-cemetery"
+url: "https://jscraik.github.io"
+
+theme_color: "#1a1a2e"
+accent_color: "#e94560"
+
+markdown: kramdown
+highlighter: rouge
+
+plugins:
+  - jekyll-feed
+  - jekyll-seo-tag
+
+collections:
+  headstones:
+    output: true
+    permalink: /:name/
+
+defaults:
+  - scope:
+      path: ""
+      type: "headstones"
+    values:
+      layout: headstone
+
+exclude:
+  - README.md
+  - Gemfile
+  - Gemfile.lock
+  - node_modules
