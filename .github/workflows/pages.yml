@@ -21,6 +21,8 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
       
+      - name: Ensure GitHub CLI is installed
+        run: bash scripts/ensure-gh-cli.sh
       - name: Setup Ruby
         uses: ruby/setup-ruby@v1
         with:
@@ -30,6 +32,12 @@ jobs:
       - name: Setup Pages
         id: pages
         uses: actions/configure-pages@v4
+
+      - name: Fetch archived repos
+        run: ./scripts/fetch_archived_repos.sh
+        env:
+          GITHUB_TOKEN: ${{ github.token }}
+          GITHUB_OWNER: jscraik
       
       - name: Build site
         run: bundle exec jekyll build --baseurl "${{ steps.pages.outputs.base_path }}"
