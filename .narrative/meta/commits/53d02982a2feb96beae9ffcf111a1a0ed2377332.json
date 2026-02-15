@@ -1,0 +1,7 @@
+{
+  "sha": "53d02982a2feb96beae9ffcf111a1a0ed2377332",
+  "subject": "chore: ensure GitHub CLI bootstrap is available for workflows",
+  "author": "jscraik",
+  "authoredAtISO": "2026-02-15T17:23:39Z",
+  "source": "git"
+}

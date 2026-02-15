@@ -1,0 +1,24 @@
+{
+  "repoRoot": "/Users/jamiecraik/dev/unfinished-cemetery",
+  "branch": "main",
+  "headSha": "b10c30a76f812ea60da3167bb25eebf731c70520",
+  "indexedAtISO": "2026-02-15T22:45:16.744Z",
+  "stats": {
+    "added": 3036,
+    "removed": 414,
+    "files": 30,
+    "commits": 8,
+    "prompts": 0,
+    "responses": 0
+  },
+  "commits": [
+    "b10c30a76f812ea60da3167bb25eebf731c70520",
+    "53d02982a2feb96beae9ffcf111a1a0ed2377332",
+    "db88e50bea3e816883f6076710f3defbe36caa83",
+    "728463468a2d922ba312b1540c1c5eb185d979b3",
+    "0cc1a18fa6f33c49197f68275944019cbdb1718d",
+    "b9400eb6dcc1cd3613886cfc6e359698e7a61646",
+    "e3360928cb1fc932609752f2b9e18080643e161a",
+    "af7615b9e2647f8cb52afd1a5ac8e1ee032cf3c9"
+  ]
+}

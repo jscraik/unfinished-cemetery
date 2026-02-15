@@ -1,0 +1,95 @@
+{
+  "sha": "b10c30a76f812ea60da3167bb25eebf731c70520",
+  "totals": {
+    "added": 447,
+    "removed": 29,
+    "files": 17
+  },
+  "files": [
+    {
+      "path": ".gitignore",
+      "additions": 4,
+      "deletions": 0
+    },
+    {
+      "path": ".tool-versions",
+      "additions": 6,
+      "deletions": 0
+    },
+    {
+      "path": "Gemfile.lock",
+      "additions": 77,
+      "deletions": 0
+    },
+    {
+      "path": "_data/archived_repos.json",
+      "additions": 62,
+      "deletions": 0
+    },
+    {
+      "path": "_headstones/ai-roadmap.md",
+      "additions": 4,
+      "deletions": 3
+    },
+    {
+      "path": "_headstones/brainwav-code-ios-ap.md",
+      "additions": 27,
+      "deletions": 0
+    },
+    {
+      "path": "_headstones/cortex-os.md",
+      "additions": 3,
+      "deletions": 2
+    },
+    {
+      "path": "_headstones/cortexas.md",
+      "additions": 4,
+      "deletions": 3
+    },
+    {
+      "path": "_headstones/xkit.md",
+      "additions": 28,
+      "deletions": 0
+    },
+    {
+      "path": "_headstones/zsearch.md",
+      "additions": 27,
+      "deletions": 0
+    },
+    {
+      "path": "_layouts/default.html",
+      "additions": 2,
+      "deletions": 1
+    },
+    {
+      "path": "_layouts/headstone.html",
+      "additions": 6,
+      "deletions": 0
+    },
+    {
+      "path": "about.md",
+      "additions": 1,
+      "deletions": 1
+    },
+    {
+      "path": "assets/css/main.scss",
+      "additions": 53,
+      "deletions": 5
+    },
+    {
+      "path": "assets/js/ambience.js",
+      "additions": 1,
+      "deletions": 2
+    },
+    {
+      "path": "index.html",
+      "additions": 89,
+      "deletions": 12
+    },
+    {
+      "path": "scripts/fetch_archived_repos.sh",
+      "additions": 53,
+      "deletions": 0
+    }
+  ]
+}
