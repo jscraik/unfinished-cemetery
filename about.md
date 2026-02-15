@@ -4,7 +4,7 @@ title: About
 permalink: /about/
 ---
 
-<div class="headstone-full">
+<div class="about-content">
   <header class="headstone-header">
     <h1>About This Cemetery</h1>
   </header>
@@ -29,7 +29,7 @@ permalink: /about/
       but died with dignity. Each has:
     </p>
 
-    <ul style="margin-left: 2rem; color: var(--text-secondary);">
+    <ul style="margin-left: 2rem; color: var(--text-secondary); margin-bottom: 1.5rem;">
       <li>A birth date (when it started)</li>
       <li>A death date (when it ended)</li>
       <li>A cause of death (why it ended)</li>
@@ -68,14 +68,14 @@ permalink: /about/
     </p>
 
     <p>
-      Click "Random Visit" to receive wisdom from a project that came before.
+      Click <a href="/visit" class="page-link">Random Visit</a> to receive wisdom from a project that came before.
     </p>
 
     <h2>The Tech</h2>
 
     <p>
-      This site is built with <a href="https://jekyllrb.com/" style="color: var(--accent);">Jekyll</a> 
-      and hosted on <a href="https://pages.github.com/" style="color: var(--accent);">GitHub Pages</a>. 
+      This site is built with <a href="https://jekyllrb.com/" class="page-link">Jekyll</a> 
+      and hosted on <a href="https://pages.github.com/" class="page-link">GitHub Pages</a>. 
       The design is custom — dark, solemn, appropriate for a cemetery but professional.
     </p>
 
@@ -85,7 +85,7 @@ permalink: /about/
     </p>
 
     <p>
-      <a href="https://github.com/jscraik/unfinished-cemetery" style="color: var(--accent);">View the source on GitHub →</a>
+      <a href="https://github.com/jscraik/unfinished-cemetery" class="page-link">View the source on GitHub →</a>
     </p>
   </div>
 </div>

@@ -5,13 +5,12 @@ permalink: /visit/
 ---
 
 <div class="visit-container">
-  <h1>🪦</h1>
-  <p style="color: var(--text-secondary); margin-bottom: 2rem;">
+  <p class="visit-intro">
     Click to receive wisdom from a project that came before.
   </p>
   
-  <button class="visit-button" onclick="visitRandom()">
-    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+  <button class="visit-button" onclick="visitRandom()" aria-label="Visit a random project in the cemetery">
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
       <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"></path>
     </svg>
     Visit Random Project
@@ -31,6 +30,16 @@ const headstones = [
 function visitRandom() {
   if (headstones.length === 0) return;
   const random = headstones[Math.floor(Math.random() * headstones.length)];
-  window.location.href = random.url;
+  
+  // Use page transition
+  const transition = document.getElementById('page-transition');
+  if (transition) {
+    transition.classList.add('active');
+    setTimeout(() => {
+      window.location.href = random.url;
+    }, 250);
+  } else {
+    window.location.href = random.url;
+  }
 }
 </script>

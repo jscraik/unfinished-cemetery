@@ -6,14 +6,35 @@ layout: default
   <header class="headstone-header">
     <div class="headstone-meta" style="justify-content: center; gap: 2rem; margin-bottom: 1.5rem;">
       <span>{{ page.birth }} — {{ page.death }}</span>
-      <span class="headstone-cause">{{ page.cause }}</span>
+      <span class="headstone-cause" style="
+        display: inline-block;
+        padding: 0.3rem 0.75rem;
+        border-radius: 100px;
+        font-size: 0.75rem;
+        font-weight: 600;
+        text-transform: uppercase;
+        letter-spacing: 0.05em;
+        {% if page.cause == 'scope-explosion' %}
+          background: var(--cause-scope-bg);
+          color: var(--cause-scope);
+        {% elsif page.cause == 'doubt' %}
+          background: var(--cause-doubt-bg);
+          color: var(--cause-doubt);
+        {% elsif page.cause == 'confusion' %}
+          background: var(--cause-confusion-bg);
+          color: var(--cause-confusion);
+        {% elsif page.cause == 'theory-trap' %}
+          background: var(--cause-theory-bg);
+          color: var(--cause-theory);
+        {% endif %}
+      ">{{ page.cause | replace: '-', ' ' | capitalize }}</span>
     </div>
     <h1>{{ page.name }}</h1>
     <p class="meta">Born {{ page.birth | date: '%B %Y' }} • Died {{ page.death | date: '%B %Y' }}</p>
     
     {%- if page.repo -%}
     <p style="margin-top: 1rem;">
-      <a href="{{ page.repo }}" target="_blank" rel="noopener" style="color: var(--accent); text-decoration: none;">
+      <a href="{{ page.repo }}" target="_blank" rel="noopener" class="page-link" style="display: inline-flex; align-items: center; gap: 0.5rem;">
         View Repository →
       </a>
     </p>
@@ -30,9 +51,9 @@ layout: default
     {%- endif -%}
   </div>
   
-  <div style="text-align: center; margin-top: 4rem; padding-top: 2rem; border-top: 1px solid var(--border);">
-    <a href="{{ '/' | relative_url }}" style="color: var(--text-secondary); text-decoration: none;">
-      ← Return to Cemetery
+  <div style="text-align: center; margin-top: 3rem;">
+    <a href="{{ '/' | relative_url }}" class="back-link">
+      <span>←</span> Return to Cemetery
     </a>
   </div>
 </article>

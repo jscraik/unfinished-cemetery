@@ -35,16 +35,17 @@ layout: default
 
 <div class="headstone-grid">
   {%- for headstone in site.headstones -%}
-    <a href="{{ headstone.url | relative_url }}" class="headstone-card">
-      <div class="headstone-meta">
-        <span>{{ headstone.birth }} — {{ headstone.death }}</span>
-        <span class="headstone-cause">{{ headstone.cause }}</span>
-      </div>
-      <h2>{{ headstone.name }}</h2>
-      <p class="headstone-dates">Lived {{ headstone.birth | date: '%b %Y' }} to {{ headstone.death | date: '%b %Y' }}</p>
+    {%- assign is_featured = false -%}
+    {%- if headstone.name == "Cortex-OS" -%}
+      {%- assign is_featured = true -%}
+    {%- endif -%}
+    <a href="{{ headstone.url | relative_url }}" class="headstone-card{% if is_featured %} featured{% endif %}" data-cause="{{ headstone.cause }}">
       <div class="headstone-epitaph">
         {{ headstone.epitaph }}
       </div>
+      <h2>{{ headstone.name }}</h2>
+      <p class="headstone-dates">{{ headstone.birth }} — {{ headstone.death }}</p>
+      <span class="headstone-cause">{{ headstone.cause | replace: '-', ' ' | capitalize }}</span>
     </a>
   {%- endfor -%}
 </div>
