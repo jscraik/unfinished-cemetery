@@ -1,10 +1,16 @@
 /**
  * Unfinished Cemetery - Ambience
- * Starfield + Page transitions
+ * Starfield + Page transitions + Cursor glow + Scroll reveals
  */
 
 (function() {
   'use strict';
+
+  // ============================================
+  // Reduced motion check (early)
+  // ============================================
+  const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
+  const reducedMotion = prefersReducedMotion.matches;
 
   // ============================================
   // Starfield
@@ -27,17 +33,17 @@
   }
 
   function initStars() {
-    const count = Math.min(80, Math.floor((canvas.width * canvas.height) / 15000));
+    const count = Math.min(60, Math.floor((canvas.width * canvas.height) / 20000));
     stars = [];
     
     for (let i = 0; i < count; i++) {
       stars.push({
         x: Math.random() * canvas.width,
         y: Math.random() * canvas.height,
-        size: Math.random() * 1.5 + 0.5,
-        speed: Math.random() * 0.02 + 0.01,
-        opacity: Math.random() * 0.5 + 0.3,
-        twinkleSpeed: Math.random() * 0.02 + 0.005,
+        size: Math.random() * 1.2 + 0.3,
+        speed: Math.random() * 0.015 + 0.005,
+        opacity: Math.random() * 0.4 + 0.2,
+        twinkleSpeed: Math.random() * 0.015 + 0.003,
         twinkleOffset: Math.random() * Math.PI * 2
       });
     }
@@ -53,7 +59,7 @@
     stars.forEach(star => {
       // Twinkle
       const twinkle = Math.sin(time * star.twinkleSpeed + star.twinkleOffset);
-      const opacity = star.opacity * (0.7 + twinkle * 0.3);
+      const opacity = star.opacity * (0.6 + twinkle * 0.4);
       
       // Draw star
       ctx.beginPath();
@@ -75,7 +81,7 @@
   // Visibility handling
   document.addEventListener('visibilitychange', () => {
     isVisible = !document.hidden;
-    if (isVisible && !animationId) {
+    if (isVisible && !animationId && !reducedMotion) {
       draw();
     } else if (!isVisible && animationId) {
       cancelAnimationFrame(animationId);
@@ -86,7 +92,100 @@
   // Initialize
   window.addEventListener('resize', resize, { passive: true });
   resize();
-  draw();
+  
+  if (!reducedMotion) {
+    draw();
+  } else {
+    // Static render once for reduced motion
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+    stars.forEach(star => {
+      ctx.beginPath();
+      ctx.arc(star.x, star.y, star.size, 0, Math.PI * 2);
+      ctx.fillStyle = `rgba(230, 237, 243, ${star.opacity * 0.4})`;
+      ctx.fill();
+    });
+  }
+
+  // ============================================
+  // Cursor Glow Effect
+  // ============================================
+  if (!reducedMotion && !window.matchMedia('(pointer: coarse)').matches) {
+    const glow = document.createElement('div');
+    glow.className = 'cursor-glow';
+    document.body.appendChild(glow);
+    
+    let mouseX = 0;
+    let mouseY = 0;
+    let glowX = 0;
+    let glowY = 0;
+    let isMoving = false;
+    let moveTimeout = null;
+    
+    document.addEventListener('mousemove', (e) => {
+      mouseX = e.clientX;
+      mouseY = e.clientY;
+      isMoving = true;
+      glow.classList.add('active');
+      
+      clearTimeout(moveTimeout);
+      moveTimeout = setTimeout(() => {
+        isMoving = false;
+      }, 100);
+    }, { passive: true });
+    
+    document.addEventListener('mouseleave', () => {
+      glow.classList.remove('active');
+    });
+    
+    function animateGlow() {
+      if (isMoving) {
+        glowX += (mouseX - glowX) * 0.08;
+        glowY += (mouseY - glowY) * 0.08;
+        glow.style.left = glowX + 'px';
+        glow.style.top = glowY + 'px';
+      }
+      requestAnimationFrame(animateGlow);
+    }
+    animateGlow();
+  }
+
+  // ============================================
+  // Scroll-Triggered Reveals
+  // ============================================
+  if (!reducedMotion) {
+    const revealElements = document.querySelectorAll('.reveal, .reveal-stagger');
+    
+    if (revealElements.length > 0) {
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('visible');
+            observer.unobserve(entry.target);
+          }
+        });
+      }, {
+        threshold: 0.1,
+        rootMargin: '0px 0px -50px 0px'
+      });
+      
+      revealElements.forEach(el => observer.observe(el));
+    }
+    
+    // Auto-add reveal class to headstone cards if not present
+    const headstoneCards = document.querySelectorAll('.headstone-card:not(.reveal)');
+    headstoneCards.forEach(card => {
+      card.classList.add('reveal');
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('visible');
+            observer.unobserve(entry.target);
+          }
+        });
+      }, { threshold: 0.1 });
+      observer.observe(card);
+    });
+  }
 
   // ============================================
   // Page Transitions
@@ -94,7 +193,7 @@
   const transition = document.getElementById('page-transition');
   
   function fadeToBlack(callback) {
-    if (!transition) {
+    if (!transition || reducedMotion) {
       callback();
       return;
     }
@@ -106,7 +205,7 @@
       setTimeout(() => {
         transition.classList.remove('active');
       }, 50);
-    }, 250);
+    }, 300);
   }
 
   // Intercept link clicks for internal navigation
@@ -134,23 +233,15 @@
   });
 
   // ============================================
-  // Reduced motion check
+  // Card hover sound preparation (visual feedback only)
   // ============================================
-  const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
-  
-  if (prefersReducedMotion.matches) {
-    // Disable starfield animation
-    if (animationId) {
-      cancelAnimationFrame(animationId);
-      animationId = null;
-    }
-    // Static render once
-    ctx.clearRect(0, 0, canvas.width, canvas.height);
-    stars.forEach(star => {
-      ctx.beginPath();
-      ctx.arc(star.x, star.y, star.size, 0, Math.PI * 2);
-      ctx.fillStyle = `rgba(230, 237, 243, ${star.opacity * 0.5})`;
-      ctx.fill();
+  const cards = document.querySelectorAll('.headstone-card');
+  cards.forEach(card => {
+    card.addEventListener('mouseenter', () => {
+      card.style.willChange = 'transform, box-shadow';
     });
-  }
+    card.addEventListener('mouseleave', () => {
+      card.style.willChange = 'auto';
+    });
+  });
 })();
