@@ -1,11 +1,12 @@
 ---
 name: CortexAs
-birth: 2024-11
-death: 2025-01
+birth: 2025-11
+death: 2026-02
 cause: confusion
 tags: [architecture, indecision, complexity]
-repo: 
+repo: https://github.com/jscraik/CortexAs
 epitaph: "I got confused and never returned to untangle it."
+archived: true
 ---
 
 ## What It Wanted To Be

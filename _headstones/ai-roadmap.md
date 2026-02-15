@@ -1,11 +1,12 @@
 ---
 name: AI Engineering Roadmap
-birth: 2024-06
-death: 2024-07
+birth: 2025-06
+death: 2026-01
 cause: theory-trap
 tags: [planning, analysis-paralysis, learning]
-repo: 
+repo: https://github.com/jscraik/ai-engineering-roadmap
 epitaph: "I thought planning would teach me. Doing would have been faster."
+archived: true
 ---
 
 ## What It Wanted To Be

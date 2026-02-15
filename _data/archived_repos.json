@@ -1,0 +1,62 @@
+[
+  {
+    "name": "Cortex-OS",
+    "full_name": "jscraik/Cortex-OS",
+    "html_url": "https://github.com/jscraik/Cortex-OS",
+    "description": "Cortex Operating System - Agentic Second Brain",
+    "archived": true,
+    "created_at": "2025-08-26T13:00:00Z",
+    "pushed_at": "2026-02-13T00:22:45Z",
+    "updated_at": "2026-02-15T16:06:56Z"
+  },
+  {
+    "name": "CortexAs",
+    "full_name": "jscraik/CortexAs",
+    "html_url": "https://github.com/jscraik/CortexAs",
+    "description": "Cortex Aegis",
+    "archived": true,
+    "created_at": "2025-11-13T12:30:24Z",
+    "pushed_at": "2026-01-21T14:14:55Z",
+    "updated_at": "2026-02-15T16:07:46Z"
+  },
+  {
+    "name": "ai-engineering-roadmap",
+    "full_name": "jscraik/ai-engineering-roadmap",
+    "html_url": "https://github.com/jscraik/ai-engineering-roadmap",
+    "description": "Signals from Lived Minds | Veteran-Led",
+    "archived": true,
+    "created_at": "2025-06-21T21:36:15Z",
+    "pushed_at": "2025-07-06T02:05:40Z",
+    "updated_at": "2026-01-15T21:00:30Z"
+  },
+  {
+    "name": "brainwav-code-ios-ap",
+    "full_name": "jscraik/brainwav-code-ios-ap",
+    "html_url": "https://github.com/jscraik/brainwav-code-ios-ap",
+    "description": null,
+    "archived": true,
+    "created_at": "2025-08-03T12:02:38Z",
+    "pushed_at": "2025-08-03T12:02:41Z",
+    "updated_at": "2026-01-05T01:39:48Z"
+  },
+  {
+    "name": "xKit",
+    "full_name": "jscraik/xKit",
+    "html_url": "https://github.com/jscraik/xKit",
+    "description": "Unofficial X Web API Toolkit",
+    "archived": true,
+    "created_at": "2026-01-09T17:58:31Z",
+    "pushed_at": "2026-01-31T22:25:41Z",
+    "updated_at": "2026-02-15T16:10:58Z"
+  },
+  {
+    "name": "zSearch",
+    "full_name": "jscraik/zSearch",
+    "html_url": "https://github.com/jscraik/zSearch",
+    "description": "Z.AI capabilities CLI and MCP server for agents and automation",
+    "archived": true,
+    "created_at": "2026-01-05T01:55:08Z",
+    "pushed_at": "2026-02-12T22:51:23Z",
+    "updated_at": "2026-02-15T16:46:15Z"
+  }
+]

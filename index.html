@@ -2,29 +2,70 @@
 layout: default
 ---
 
+{%- assign archived_repos = site.data.archived_repos -%}
+{%- if archived_repos == nil -%}
+  {%- assign archived_repos = "" | split: "," -%}
+{%- endif -%}
+{%- assign archived_repo_names = archived_repos | map: 'name' -%}
+{%- assign archived_repo_tokens = "|" -%}
+{%- for archived_repo in archived_repos -%}
+  {%- assign archived_repo_tokens = archived_repo_tokens | append: archived_repo.name | downcase | append: "|" -%}
+{%- endfor -%}
+{%- assign archived_repo_count = archived_repos | size -%}
+{%- assign headstone_repo_names = "|" -%}
+{%- assign archived_headstone_count = 0 -%}
+{%- assign total_months = 0 -%}
+{%- assign archived_causes = "" -%}
+
+{%- for headstone in site.headstones -%}
+  {%- assign repo_name = "" -%}
+  {%- if headstone.repo -%}
+    {%- assign repo_parts = headstone.repo | split: '/' -%}
+    {%- assign repo_name = repo_parts | last | downcase -%}
+    {%- assign headstone_repo_names = headstone_repo_names | append: repo_name | append: "|" -%}
+  {%- endif -%}
+
+  {%- assign is_archived = false -%}
+  {%- if headstone.archived == true -%}
+    {%- assign is_archived = true -%}
+  {%- elsif repo_name != "" and archived_repo_tokens contains repo_name -%}
+    {%- assign is_archived = true -%}
+  {%- endif -%}
+
+  {%- if is_archived -%}
+    {%- assign archived_headstone_count = archived_headstone_count | plus: 1 -%}
+    {%- assign archived_causes = archived_causes | append: headstone.cause | append: "," -%}
+    {%- assign birth = headstone.birth | split: '-' -%}
+    {%- assign death = headstone.death | split: '-' -%}
+    {%- if birth.size > 1 and death.size > 1 -%}
+      {%- assign months = death[0] | minus: birth[0] | times: 12 | plus: death[1] | minus: birth[1] -%}
+      {%- assign total_months = total_months | plus: months -%}
+    {%- endif -%}
+  {%- endif -%}
+{%- endfor -%}
+
+{%- assign total_archived_count = archived_repo_count -%}
+{%- if total_archived_count == 0 -%}
+  {%- assign total_archived_count = archived_headstone_count -%}
+{%- endif -%}
+{%- assign archived_causes_array = archived_causes | split: ',' | uniq | reject: '' -%}
+
 <div class="hero">
-  <h1>{{ site.headstones.size }} Projects<br>That Never Were</h1>
+  <h1>{{ total_archived_count }} Projects<br>That Never Were</h1>
   <p>{{ site.description }}</p>
 </div>
 
 <div class="stats-bar">
   <div class="stat-item">
-    <div class="stat-number">{{ site.headstones.size }}</div>
+    <div class="stat-number">{{ total_archived_count }}</div>
     <div class="stat-label">Projects Buried</div>
   </div>
   <div class="stat-item">
-    <div class="stat-number">{{ site.headstones | map: 'cause' | uniq | size }}</div>
+    <div class="stat-number">{{ archived_causes_array | size }}</div>
     <div class="stat-label">Causes of Death</div>
   </div>
   <div class="stat-item">
-    {%- assign total_months = 0 -%}
-    {%- for headstone in site.headstones -%}
-      {%- assign birth = headstone.birth | split: '-' -%}
-      {%- assign death = headstone.death | split: '-' -%}
-      {%- assign months = death[0] | minus: birth[0] | times: 12 | plus: death[1] | minus: birth[1] -%}
-      {%- assign total_months = total_months | plus: months -%}
-    {%- endfor -%}
-    <div class="stat-number">{{ total_months | divided_by: site.headstones.size | default: 0 }}</div>
+    <div class="stat-number">{{ total_months | divided_by: archived_headstone_count | default: 0 }}</div>
     <div class="stat-label">Avg Months Alive</div>
   </div>
   <div class="stat-item">
@@ -35,8 +76,25 @@ layout: default
 
 <div class="headstone-grid">
   {%- for headstone in site.headstones -%}
+    {%- assign repo_name = "" -%}
+    {%- if headstone.repo -%}
+      {%- assign repo_parts = headstone.repo | split: '/' -%}
+      {%- assign repo_name = repo_parts | last | downcase -%}
+    {%- endif -%}
+
+    {%- assign is_archived = false -%}
+    {%- if headstone.archived == true -%}
+      {%- assign is_archived = true -%}
+  {%- elsif repo_name != "" and archived_repo_tokens contains repo_name -%}
+      {%- assign is_archived = true -%}
+    {%- endif -%}
+
+    {%- unless is_archived -%}
+      {%- continue -%}
+    {%- endunless -%}
+
     {%- assign is_featured = false -%}
-    {%- if headstone.name == "Cortex-OS" -%}
+    {%- if headstone.featured == true or headstone.name == "Cortex-OS" -%}
       {%- assign is_featured = true -%}
     {%- endif -%}
     <a href="{{ headstone.url | relative_url }}" class="headstone-card{% if is_featured %} featured{% endif %}" data-cause="{{ headstone.cause }}">
@@ -48,4 +106,23 @@ layout: default
       <span class="headstone-cause">{{ headstone.cause | replace: '-', ' ' | capitalize }}</span>
     </a>
   {%- endfor -%}
+
+  {%- if archived_repo_count > 0 -%}
+    {%- for repo in archived_repos -%}
+      {%- assign normalized_repo_name = repo.name | downcase -%}
+      {%- assign repo_token = "|" | append: normalized_repo_name | append: "|" -%}
+      {%- unless headstone_repo_names contains repo_token -%}
+        {%- assign repo_created = repo.created_at | date: '%Y-%m' -%}
+        {%- assign repo_updated = repo.updated_at | date: '%Y-%m' -%}
+        <a href="{{ repo.html_url }}" class="headstone-card missing" data-cause="archived">
+          <div class="headstone-epitaph">
+            {{ repo.description | default: "An archived project with no headstone yet." }}
+          </div>
+          <h2>{{ repo.name }}</h2>
+          <p class="headstone-dates">{{ repo_created }} — {{ repo_updated }}</p>
+          <span class="headstone-cause">Archived</span>
+        </a>
+      {%- endunless -%}
+    {%- endfor -%}
+  {%- endif -%}
 </div>

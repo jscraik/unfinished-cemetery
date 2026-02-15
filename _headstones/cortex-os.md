@@ -1,11 +1,12 @@
 ---
 name: Cortex-OS
-birth: 2024-08
-death: 2025-02
+birth: 2025-08
+death: 2026-02
 cause: scope-explosion
 tags: [platform, os, over-ambitious]
 repo: https://github.com/jscraik/cortex-os
 epitaph: "An 'agentic second brain' sounded possible. It wasn't. Not yet."
+archived: true
 ---
 
 ## What It Wanted To Be

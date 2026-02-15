@@ -2,9 +2,10 @@
 <html lang="{{ page.lang | default: site.lang | default: 'en' }}">
   {%- include head.html -%}
   <body>
+    <a class="skip-link" href="#main-content">Skip to content</a>
     <div class="page-wrapper">
       {%- include header.html -%}
-      <main role="main" class="page-content" aria-label="Content">
+      <main id="main-content" role="main" class="page-content" aria-label="Content">
         <div class="wrapper">
           {{ content }}
         </div>

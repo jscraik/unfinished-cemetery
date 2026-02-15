@@ -68,6 +68,7 @@
 html {
   font-size: 16px;
   scroll-behavior: smooth;
+  color-scheme: dark;
 }
 
 /* Scroll-triggered reveal */
@@ -140,6 +141,27 @@ body {
   top: 0;
   z-index: 100;
   backdrop-filter: blur(20px);
+}
+
+.skip-link {
+  position: absolute;
+  left: 0.75rem;
+  top: -4.5rem;
+  z-index: 2000;
+  padding: 0.75rem 1rem;
+  border-radius: var(--radius-sm);
+  background: var(--bg-tertiary);
+  color: var(--text-primary);
+  text-decoration: none;
+  font-size: 0.9rem;
+  font-weight: 600;
+  transition: top var(--duration-fast) var(--ease-out), background var(--duration-fast) var(--ease-out);
+}
+
+.skip-link:focus-visible {
+  top: 0.75rem;
+  outline: 3px solid var(--accent-focus);
+  outline-offset: 2px;
 }
 
 .site-header .wrapper {
@@ -276,7 +298,6 @@ main[role="main"] {
   animation: hero-text-shimmer 6s ease-in-out infinite;
   opacity: 0;
   transform: translateY(20px);
-  filter: blur(8px);
   animation: hero-text-enter var(--duration-dramatic) var(--ease-out) forwards,
              hero-text-shimmer 6s ease-in-out 1s infinite;
 }
@@ -285,7 +306,6 @@ main[role="main"] {
   to {
     opacity: 1;
     transform: translateY(0);
-    filter: blur(0);
   }
 }
 
@@ -401,13 +421,16 @@ main[role="main"] {
   border: 1px solid var(--border);
   border-radius: var(--radius-md);
   padding: 1.75rem;
-  transition: all var(--duration-normal) var(--ease-out);
+  transition: transform var(--duration-normal) var(--ease-out),
+              box-shadow var(--duration-normal) var(--ease-out),
+              border-color var(--duration-normal) var(--ease-out);
   cursor: pointer;
   position: relative;
   overflow: hidden;
   text-decoration: none;
   display: flex;
   flex-direction: column;
+  touch-action: manipulation;
 }
 
 /* Staggered entrance - faster, more deliberate */
@@ -446,6 +469,14 @@ main[role="main"] {
 
 .headstone-card[data-cause="theory-trap"] {
   border-left: 4px solid var(--cause-theory);
+}
+
+.headstone-card[data-cause="policy-risk"] {
+  border-left: 4px solid #4fd1c5;
+}
+
+.headstone-card[data-cause="compatibility-gap"] {
+  border-left: 4px solid #9f7aea;
 }
 
 /* Featured grave - enhanced */
@@ -545,6 +576,16 @@ main[role="main"] {
 .headstone-card[data-cause="theory-trap"] .headstone-cause {
   background: var(--cause-theory-bg);
   color: var(--cause-theory);
+}
+
+.headstone-card[data-cause="policy-risk"] .headstone-cause {
+  background: rgba(79, 209, 197, 0.18);
+  color: #4fd1c5;
+}
+
+.headstone-card[data-cause="compatibility-gap"] .headstone-cause {
+  background: rgba(159, 122, 234, 0.18);
+  color: #9f7aea;
 }
 
 /* Project name - subdued like "HERE LIES" */
@@ -797,9 +838,13 @@ main[role="main"] {
   text-decoration: none;
   font-size: 0.9rem;
   font-weight: 500;
-  transition: all var(--duration-fast) var(--ease-out);
+  transition: border-color var(--duration-fast) var(--ease-out),
+              color var(--duration-fast) var(--ease-out),
+              transform var(--duration-fast) var(--ease-out),
+              box-shadow var(--duration-fast) var(--ease-out);
   position: relative;
   overflow: hidden;
+  touch-action: manipulation;
 }
 
 .back-link::before {
@@ -868,11 +913,14 @@ main[role="main"] {
   text-decoration: none;
   font-weight: 600;
   font-size: 1rem;
-  transition: all var(--duration-fast) var(--ease-out);
+  transition: transform var(--duration-fast) var(--ease-out),
+              box-shadow var(--duration-fast) var(--ease-out),
+              outline-color var(--duration-fast) var(--ease-out);
   border: none;
   cursor: pointer;
   position: relative;
   overflow: hidden;
+  touch-action: manipulation;
 }
 
 .visit-button::before {

@@ -68,7 +68,7 @@ permalink: /about/
     </p>
 
     <p>
-      Click <a href="/visit" class="page-link">Random Visit</a> to receive wisdom from a project that came before.
+      Click <a href="{{ '/visit' | relative_url }}" class="page-link">Random Visit</a> to receive wisdom from a project that came before.
     </p>
 
     <h2>The Tech</h2>
