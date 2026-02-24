@@ -29,6 +29,13 @@ while true; do
     "${url}" \
     > "${TMP_DIR}/page-${PAGE}.raw"
 
+  response_type=$(jq -r 'type' "${TMP_DIR}/page-${PAGE}.raw")
+  if [[ "${response_type}" != "array" ]]; then
+    api_message=$(jq -r '.message // "Unexpected GitHub API response"' "${TMP_DIR}/page-${PAGE}.raw")
+    echo "GitHub API did not return a repo array on page ${PAGE}: ${api_message}" >&2
+    break
+  fi
+
   response_count=$(jq 'length' "${TMP_DIR}/page-${PAGE}.raw")
   jq '[.[] | select(.archived == true) | {name, full_name, html_url, description, archived, created_at, pushed_at, updated_at}]' \
     "${TMP_DIR}/page-${PAGE}.raw" \
