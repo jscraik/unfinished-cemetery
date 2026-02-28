@@ -1,0 +1,18 @@
+name: CI Tests
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+jobs:
+  jekyll-test-build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Setup Ruby
+        uses: ruby/setup-ruby@v1
+        with:
+          bundler-cache: true
+      - name: Run jekyll test build
+        run: bundle exec jekyll build
