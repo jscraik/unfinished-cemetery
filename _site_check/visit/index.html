@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1"><!-- Begin Jekyll SEO tag v2.8.0 -->
+<title>Visit | Unfinished Cemetery</title>
+<meta name="generator" content="Jekyll v4.3.4" />
+<meta property="og:title" content="Visit" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="A ritualized archive of abandoned projects. Honoring what died so we can learn what lives." />
+<meta property="og:description" content="A ritualized archive of abandoned projects. Honoring what died so we can learn what lives." />
+<link rel="canonical" href="https://jscraik.github.io/unfinished-cemetery/visit/" />
+<meta property="og:url" content="https://jscraik.github.io/unfinished-cemetery/visit/" />
+<meta property="og:site_name" content="Unfinished Cemetery" />
+<meta property="og:type" content="website" />
+<meta name="twitter:card" content="summary" />
+<meta property="twitter:title" content="Visit" />
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"WebPage","description":"A ritualized archive of abandoned projects. Honoring what died so we can learn what lives.","headline":"Visit","url":"https://jscraik.github.io/unfinished-cemetery/visit/"}</script>
+<!-- End Jekyll SEO tag -->
+<link rel="stylesheet" href="/unfinished-cemetery/assets/css/main.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400&family=Inter:wght@400;500;600&display=swap" rel="stylesheet"><link type="application/atom+xml" rel="alternate" href="https://jscraik.github.io/unfinished-cemetery/feed.xml" title="Unfinished Cemetery" /></head>
+<body>
+    <a class="skip-link" href="#main-content">Skip to content</a>
+    <div class="page-wrapper"><header class="site-header" role="banner">
+  <div class="wrapper">
+    <a class="site-title" rel="author" href="/unfinished-cemetery/">
+      <span class="site-title-main">Unfinished</span>
+      <span class="site-title-sub">Cemetery</span>
+    </a>
+    <nav class="site-nav">
+      <a class="page-link" href="/unfinished-cemetery/">All Projects</a>
+      <a class="page-link" href="/unfinished-cemetery/visit">Random Visit</a>
+      <a class="page-link" href="/unfinished-cemetery/about">About</a>
+    </nav>
+  </div>
+</header>
+<main id="main-content" role="main" class="page-content" aria-label="Content">
+        <div class="wrapper">
+          <div class="visit-container">
+  <p class="visit-intro">
+    Click to receive wisdom from a project that came before.
+  </p>
+  
+  <button class="visit-button" onclick="visitRandom()" aria-label="Visit a random project in the cemetery">
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+      <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"></path>
+    </svg>
+    Visit Random Project
+  </button>
+</div>
+
+<script>
+const headstones = [{
+      name: "AI Engineering Roadmap",
+      url: "/unfinished-cemetery/ai-roadmap/"
+    },{
+      name: "brainwav-code-ios-ap",
+      url: "/unfinished-cemetery/brainwav-code-ios-ap/"
+    },{
+      name: "Cortex-OS",
+      url: "/unfinished-cemetery/cortex-os/"
+    },{
+      name: "CortexAs",
+      url: "/unfinished-cemetery/cortexas/"
+    },{
+      name: "CortexDx",
+      url: "/unfinished-cemetery/cortexdx/"
+    },{
+      name: "xKit",
+      url: "/unfinished-cemetery/xkit/"
+    },{
+      name: "zSearch",
+      url: "/unfinished-cemetery/zsearch/"
+    }];
+
+function visitRandom() {
+  if (headstones.length === 0) return;
+  const random = headstones[Math.floor(Math.random() * headstones.length)];
+  
+  // Use page transition
+  const transition = document.getElementById('page-transition');
+  if (transition) {
+    transition.classList.add('active');
+    setTimeout(() => {
+      window.location.href = random.url;
+    }, 250);
+  } else {
+    window.location.href = random.url;
+  }
+}
+</script>
+
+        </div>
+      </main><footer class="site-footer" role="contentinfo">
+  <div class="wrapper">
+    <div class="footer-col-wrapper">
+      <div class="footer-col">
+        <p class="footer-text">
+          A ritualized archive of abandoned projects.<br>
+          Honoring what died so we can learn what lives.
+        </p>
+      </div>
+      <div class="footer-col">
+        <p class="footer-meta">
+          Built by <a href="https://github.com/jscraik">jscraik</a> • 
+          <a href="https://github.com/jscraik/unfinished-cemetery">View Source</a>
+        </p>
+      </div>
+    </div>
+  </div>
+</footer>
+</div>
+    
+    <!-- Page transition overlay -->
+    <div class="page-transition" id="page-transition" aria-hidden="true"></div>
+    
+    <!-- Ambient effects -->
+    <script src="/unfinished-cemetery/assets/js/ambience.js"></script>
+  </body>
+</html>

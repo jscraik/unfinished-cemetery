@@ -37,14 +37,28 @@ layout: default
     </div>
     <h1>{{ page.name }}</h1>
     <p class="meta">Born {{ page.birth | date: '%B %Y' }} • Died {{ page.death | date: '%B %Y' }}</p>
-    
-    {%- if page.repo -%}
-    <p style="margin-top: 1rem;">
-      <a href="{{ page.repo }}" target="_blank" rel="noopener" class="page-link" style="display: inline-flex; align-items: center; gap: 0.5rem;">
-        View Repository →
-      </a>
-    </p>
-    {%- endif -%}
+
+    {%- assign share_url = page.url | absolute_url -%}
+    {%- assign share_title = page.name | append: " — Unfinished Cemetery" -%}
+    {%- assign share_text = page.epitaph | default: site.description | strip_html | strip_newlines | strip -%}
+
+    <div class="headstone-actions" aria-label="Headstone actions">
+      <button
+        type="button"
+        class="page-link uc-share-button"
+        data-uc-share="headstone"
+        data-uc-share-title="{{ share_title | escape }}"
+        data-uc-share-text="{{ share_text | escape }}"
+        data-uc-share-url="{{ share_url | escape }}"
+        aria-label="Share this headstone"
+      >Share</button>
+
+      {%- if page.repo -%}
+        <a href="{{ page.repo }}" target="_blank" rel="noopener" class="page-link">
+          View Repository →
+        </a>
+      {%- endif -%}
+    </div>
   </header>
 
   <div class="headstone-content">

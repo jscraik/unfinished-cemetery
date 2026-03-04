@@ -1,0 +1,611 @@
+{
+  "id": "otlp-b10c30a76f812ea60da3167bb25eebf731c70520-2026-02-15T22-52-06-850968+00-00",
+  "version": "0.1.0",
+  "timestamp": "2026-02-15T22:52:06.850968+00:00",
+  "vcs": {
+    "type": "git",
+    "revision": "b10c30a76f812ea60da3167bb25eebf731c70520"
+  },
+  "tool": {
+    "name": "codex",
+    "version": "0.100.0-alpha.10"
+  },
+  "files": [
+    {
+      "path": ".tool-versions",
+      "conversations": [
+        {
+          "url": null,
+          "contributor": {
+            "type": "ai",
+            "model_id": "gpt-5.3-codex"
+          },
+          "ranges": [
+            {
+              "start_line": 1,
+              "end_line": 6,
+              "content_hash": null,
+              "contributor": {
+                "type": "ai",
+                "model_id": "gpt-5.3-codex"
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "path": "_headstones/brainwav-code-ios-ap.md",
+      "conversations": [
+        {
+          "url": null,
+          "contributor": {
+            "type": "ai",
+            "model_id": "gpt-5.3-codex"
+          },
+          "ranges": [
+            {
+              "start_line": 1,
+              "end_line": 27,
+              "content_hash": null,
+              "contributor": {
+                "type": "ai",
+                "model_id": "gpt-5.3-codex"
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "path": "_headstones/xkit.md",
+      "conversations": [
+        {
+          "url": null,
+          "contributor": {
+            "type": "ai",
+            "model_id": "gpt-5.3-codex"
+          },
+          "ranges": [
+            {
+              "start_line": 1,
+              "end_line": 28,
+              "content_hash": null,
+              "contributor": {
+                "type": "ai",
+                "model_id": "gpt-5.3-codex"
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "path": "_headstones/ai-roadmap.md",
+      "conversations": [
+        {
+          "url": null,
+          "contributor": {
+            "type": "ai",
+            "model_id": "gpt-5.3-codex"
+          },
+          "ranges": [
+            {
+              "start_line": 3,
+              "end_line": 4,
+              "content_hash": null,
+              "contributor": {
+                "type": "ai",
+                "model_id": "gpt-5.3-codex"
+              }
+            },
+            {
+              "start_line": 7,
+              "end_line": 7,
+              "content_hash": null,
+              "contributor": {
+                "type": "ai",
+                "model_id": "gpt-5.3-codex"
+              }
+            },
+            {
+              "start_line": 9,
+              "end_line": 9,
+              "content_hash": null,
+              "contributor": {
+                "type": "ai",
+                "model_id": "gpt-5.3-codex"
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "path": "Gemfile.lock",
+      "conversations": [
+        {
+          "url": null,
+          "contributor": {
+            "type": "ai",
+            "model_id": "gpt-5.3-codex"
+          },
+          "ranges": [
+            {
+              "start_line": 1,
+              "end_line": 77,
+              "content_hash": null,
+              "contributor": {
+                "type": "ai",
+                "model_id": "gpt-5.3-codex"
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "path": "_headstones/zsearch.md",
+      "conversations": [
+        {
+          "url": null,
+          "contributor": {
+            "type": "ai",
+            "model_id": "gpt-5.3-codex"
+          },
+          "ranges": [
+            {
+              "start_line": 1,
+              "end_line": 27,
+              "content_hash": null,
+              "contributor": {
+                "type": "ai",
+                "model_id": "gpt-5.3-codex"
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "path": "scripts/fetch_archived_repos.sh",
+      "conversations": [
+        {
+          "url": null,
+          "contributor": {
+            "type": "ai",
+            "model_id": "gpt-5.3-codex"
+          },
+          "ranges": [
+            {
+              "start_line": 1,
+              "end_line": 53,
+              "content_hash": null,
+              "contributor": {
+                "type": "ai",
+                "model_id": "gpt-5.3-codex"
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "path": "_headstones/cortex-os.md",
+      "conversations": [
+        {
+          "url": null,
+          "contributor": {
+            "type": "ai",
+            "model_id": "gpt-5.3-codex"
+          },
+          "ranges": [
+            {
+              "start_line": 3,
+              "end_line": 4,
+              "content_hash": null,
+              "contributor": {
+                "type": "ai",
+                "model_id": "gpt-5.3-codex"
+              }
+            },
+            {
+              "start_line": 9,
+              "end_line": 9,
+              "content_hash": null,
+              "contributor": {
+                "type": "ai",
+                "model_id": "gpt-5.3-codex"
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "path": ".gitignore",
+      "conversations": [
+        {
+          "url": null,
+          "contributor": {
+            "type": "ai",
+            "model_id": "gpt-5.3-codex"
+          },
+          "ranges": [
+            {
+              "start_line": 2,
+              "end_line": 5,
+              "content_hash": null,
+              "contributor": {
+                "type": "ai",
+                "model_id": "gpt-5.3-codex"
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "path": "assets/js/ambience.js",
+      "conversations": [
+        {
+          "url": null,
+          "contributor": {
+            "type": "ai",
+            "model_id": "gpt-5.3-codex"
+          },
+          "ranges": [
+            {
+              "start_line": 20,
+              "end_line": 20,
+              "content_hash": null,
+              "contributor": {
+                "type": "ai",
+                "model_id": "gpt-5.3-codex"
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "path": "assets/css/main.scss",
+      "conversations": [
+        {
+          "url": null,
+          "contributor": {
+            "type": "ai",
+            "model_id": "gpt-5.3-codex"
+          },
+          "ranges": [
+            {
+              "start_line": 71,
+              "end_line": 71,
+              "content_hash": null,
+              "contributor": {
+                "type": "ai",
+                "model_id": "gpt-5.3-codex"
+              }
+            },
+            {
+              "start_line": 146,
+              "end_line": 166,
+              "content_hash": null,
+              "contributor": {
+                "type": "ai",
+                "model_id": "gpt-5.3-codex"
+              }
+            },
+            {
+              "start_line": 424,
+              "end_line": 426,
+              "content_hash": null,
+              "contributor": {
+                "type": "ai",
+                "model_id": "gpt-5.3-codex"
+              }
+            },
+            {
+              "start_line": 433,
+              "end_line": 433,
+              "content_hash": null,
+              "contributor": {
+                "type": "ai",
+                "model_id": "gpt-5.3-codex"
+              }
+            },
+            {
+              "start_line": 474,
+              "end_line": 481,
+              "content_hash": null,
+              "contributor": {
+                "type": "ai",
+                "model_id": "gpt-5.3-codex"
+              }
+            },
+            {
+              "start_line": 581,
+              "end_line": 590,
+              "content_hash": null,
+              "contributor": {
+                "type": "ai",
+                "model_id": "gpt-5.3-codex"
+              }
+            },
+            {
+              "start_line": 841,
+              "end_line": 844,
+              "content_hash": null,
+              "contributor": {
+                "type": "ai",
+                "model_id": "gpt-5.3-codex"
+              }
+            },
+            {
+              "start_line": 847,
+              "end_line": 847,
+              "content_hash": null,
+              "contributor": {
+                "type": "ai",
+                "model_id": "gpt-5.3-codex"
+              }
+            },
+            {
+              "start_line": 916,
+              "end_line": 918,
+              "content_hash": null,
+              "contributor": {
+                "type": "ai",
+                "model_id": "gpt-5.3-codex"
+              }
+            },
+            {
+              "start_line": 923,
+              "end_line": 923,
+              "content_hash": null,
+              "contributor": {
+                "type": "ai",
+                "model_id": "gpt-5.3-codex"
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "path": "about.md",
+      "conversations": [
+        {
+          "url": null,
+          "contributor": {
+            "type": "ai",
+            "model_id": "gpt-5.3-codex"
+          },
+          "ranges": [
+            {
+              "start_line": 71,
+              "end_line": 71,
+              "content_hash": null,
+              "contributor": {
+                "type": "ai",
+                "model_id": "gpt-5.3-codex"
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "path": "_headstones/cortexas.md",
+      "conversations": [
+        {
+          "url": null,
+          "contributor": {
+            "type": "ai",
+            "model_id": "gpt-5.3-codex"
+          },
+          "ranges": [
+            {
+              "start_line": 3,
+              "end_line": 4,
+              "content_hash": null,
+              "contributor": {
+                "type": "ai",
+                "model_id": "gpt-5.3-codex"
+              }
+            },
+            {
+              "start_line": 7,
+              "end_line": 7,
+              "content_hash": null,
+              "contributor": {
+                "type": "ai",
+                "model_id": "gpt-5.3-codex"
+              }
+            },
+            {
+              "start_line": 9,
+              "end_line": 9,
+              "content_hash": null,
+              "contributor": {
+                "type": "ai",
+                "model_id": "gpt-5.3-codex"
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "path": "_layouts/default.html",
+      "conversations": [
+        {
+          "url": null,
+          "contributor": {
+            "type": "ai",
+            "model_id": "gpt-5.3-codex"
+          },
+          "ranges": [
+            {
+              "start_line": 5,
+              "end_line": 5,
+              "content_hash": null,
+              "contributor": {
+                "type": "ai",
+                "model_id": "gpt-5.3-codex"
+              }
+            },
+            {
+              "start_line": 8,
+              "end_line": 8,
+              "content_hash": null,
+              "contributor": {
+                "type": "ai",
+                "model_id": "gpt-5.3-codex"
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "path": "_layouts/headstone.html",
+      "conversations": [
+        {
+          "url": null,
+          "contributor": {
+            "type": "ai",
+            "model_id": "gpt-5.3-codex"
+          },
+          "ranges": [
+            {
+              "start_line": 29,
+              "end_line": 34,
+              "content_hash": null,
+              "contributor": {
+                "type": "ai",
+                "model_id": "gpt-5.3-codex"
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "path": "index.html",
+      "conversations": [
+        {
+          "url": null,
+          "contributor": {
+            "type": "ai",
+            "model_id": "gpt-5.3-codex"
+          },
+          "ranges": [
+            {
+              "start_line": 5,
+              "end_line": 52,
+              "content_hash": null,
+              "contributor": {
+                "type": "ai",
+                "model_id": "gpt-5.3-codex"
+              }
+            },
+            {
+              "start_line": 54,
+              "end_line": 54,
+              "content_hash": null,
+              "contributor": {
+                "type": "ai",
+                "model_id": "gpt-5.3-codex"
+              }
+            },
+            {
+              "start_line": 60,
+              "end_line": 60,
+              "content_hash": null,
+              "contributor": {
+                "type": "ai",
+                "model_id": "gpt-5.3-codex"
+              }
+            },
+            {
+              "start_line": 64,
+              "end_line": 64,
+              "content_hash": null,
+              "contributor": {
+                "type": "ai",
+                "model_id": "gpt-5.3-codex"
+              }
+            },
+            {
+              "start_line": 68,
+              "end_line": 68,
+              "content_hash": null,
+              "contributor": {
+                "type": "ai",
+                "model_id": "gpt-5.3-codex"
+              }
+            },
+            {
+              "start_line": 79,
+              "end_line": 95,
+              "content_hash": null,
+              "contributor": {
+                "type": "ai",
+                "model_id": "gpt-5.3-codex"
+              }
+            },
+            {
+              "start_line": 97,
+              "end_line": 97,
+              "content_hash": null,
+              "contributor": {
+                "type": "ai",
+                "model_id": "gpt-5.3-codex"
+              }
+            },
+            {
+              "start_line": 109,
+              "end_line": 127,
+              "content_hash": null,
+              "contributor": {
+                "type": "ai",
+                "model_id": "gpt-5.3-codex"
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "path": "_data/archived_repos.json",
+      "conversations": [
+        {
+          "url": null,
+          "contributor": {
+            "type": "ai",
+            "model_id": "gpt-5.3-codex"
+          },
+          "ranges": [
+            {
+              "start_line": 1,
+              "end_line": 62,
+              "content_hash": null,
+              "contributor": {
+                "type": "ai",
+                "model_id": "gpt-5.3-codex"
+              }
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "metadata": {
+    "dev.narrative": {
+      "conversationId": "019c62a5-494f-79f1-9172-508f283ee275",
+      "derived": true,
+      "source": "otlp-log"
+    }
+  }
+}
