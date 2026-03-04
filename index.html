@@ -16,6 +16,7 @@ layout: default
 {%- assign archived_headstone_count = 0 -%}
 {%- assign total_months = 0 -%}
 {%- assign archived_causes = "" -%}
+{%- assign headstone_taxonomy = site.data["headstone-taxonomy"] -%}
 
 {%- for headstone in site.headstones -%}
   {%- assign repo_name = "" -%}
@@ -97,13 +98,20 @@ layout: default
     {%- if headstone.featured == true or headstone.name == "Cortex-OS" -%}
       {%- assign is_featured = true -%}
     {%- endif -%}
-    <a href="{{ headstone.url | relative_url }}" class="headstone-card{% if is_featured %} featured{% endif %}" data-cause="{{ headstone.cause }}">
+    {%- assign cause_style = headstone_taxonomy.causes[headstone.cause] -%}
+    {%- if cause_style == nil -%}
+      {%- assign cause_style = headstone_taxonomy.fallback -%}
+    {%- endif -%}
+    <a href="{{ headstone.url | relative_url }}"
+       class="headstone-card{% if is_featured %} featured{% endif %}"
+       data-cause="{{ headstone.cause }}"
+       style="--cause-border: {{ cause_style.border_color }}; --cause-badge-bg: {{ cause_style.badge_bg }}; --cause-badge-fg: {{ cause_style.badge_fg }};">
       <div class="headstone-epitaph">
         {{ headstone.epitaph }}
       </div>
       <h2>{{ headstone.name }}</h2>
       <p class="headstone-dates">{{ headstone.birth }} — {{ headstone.death }}</p>
-      <span class="headstone-cause">{{ headstone.cause | replace: '-', ' ' | capitalize }}</span>
+      <span class="headstone-cause">{{ cause_style.label | default: headstone.cause | replace: '-', ' ' | capitalize }}</span>
     </a>
   {%- endfor -%}
 
@@ -114,7 +122,10 @@ layout: default
       {%- unless headstone_repo_names contains repo_token -%}
         {%- assign repo_created = repo.created_at | date: '%Y-%m' -%}
         {%- assign repo_updated = repo.updated_at | date: '%Y-%m' -%}
-        <a href="{{ repo.html_url }}" class="headstone-card missing" data-cause="archived">
+        <a href="{{ repo.html_url }}"
+           class="headstone-card missing"
+           data-cause="archived"
+           style="--cause-border: {{ headstone_taxonomy.fallback.border_color }}; --cause-badge-bg: {{ headstone_taxonomy.fallback.badge_bg }}; --cause-badge-fg: {{ headstone_taxonomy.fallback.badge_fg }};">
           <div class="headstone-epitaph">
             {{ repo.description | default: "An archived project with no headstone yet." }}
           </div>

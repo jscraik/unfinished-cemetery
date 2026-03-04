@@ -3,6 +3,12 @@ layout: default
 ---
 
 <article class="headstone-full">
+  {%- assign headstone_taxonomy = site.data["headstone-taxonomy"] -%}
+  {%- assign cause_style = headstone_taxonomy.causes[page.cause] -%}
+  {%- if cause_style == nil -%}
+    {%- assign cause_style = headstone_taxonomy.fallback -%}
+  {%- endif -%}
+
   <header class="headstone-header">
     <div class="headstone-meta" style="justify-content: center; gap: 2rem; margin-bottom: 1.5rem;">
       <span>{{ page.birth }} — {{ page.death }}</span>
@@ -14,26 +20,9 @@ layout: default
         font-weight: 600;
         text-transform: uppercase;
         letter-spacing: 0.05em;
-        {% if page.cause == 'scope-explosion' %}
-          background: var(--cause-scope-bg);
-          color: var(--cause-scope);
-        {% elsif page.cause == 'doubt' %}
-          background: var(--cause-doubt-bg);
-          color: var(--cause-doubt);
-        {% elsif page.cause == 'confusion' %}
-          background: var(--cause-confusion-bg);
-          color: var(--cause-confusion);
-        {% elsif page.cause == 'theory-trap' %}
-          background: var(--cause-theory-bg);
-          color: var(--cause-theory);
-        {% elsif page.cause == 'policy-risk' %}
-          background: rgba(79, 209, 197, 0.18);
-          color: #4fd1c5;
-        {% elsif page.cause == 'compatibility-gap' %}
-          background: rgba(159, 122, 234, 0.18);
-          color: #9f7aea;
-        {% endif %}
-      ">{{ page.cause | replace: '-', ' ' | capitalize }}</span>
+        background: {{ cause_style.badge_bg }};
+        color: {{ cause_style.badge_fg }};
+      ">{{ cause_style.label | default: page.cause | replace: '-', ' ' | capitalize }}</span>
     </div>
     <h1>{{ page.name }}</h1>
     <p class="meta">Born {{ page.birth | date: '%B %Y' }} • Died {{ page.death | date: '%B %Y' }}</p>

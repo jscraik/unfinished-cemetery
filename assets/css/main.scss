@@ -461,35 +461,15 @@ main[role="main"] {
   opacity: 1;
 }
 
-/* Border accents by cause with glow */
-.headstone-card[data-cause="scope-explosion"] {
-  border-left: 4px solid var(--cause-scope);
-}
-
-.headstone-card[data-cause="doubt"] {
-  border-left: 4px solid var(--cause-doubt);
-}
-
-.headstone-card[data-cause="confusion"] {
-  border-left: 4px solid var(--cause-confusion);
-}
-
-.headstone-card[data-cause="theory-trap"] {
-  border-left: 4px solid var(--cause-theory);
-}
-
-.headstone-card[data-cause="policy-risk"] {
-  border-left: 4px solid #4fd1c5;
-}
-
-.headstone-card[data-cause="compatibility-gap"] {
-  border-left: 4px solid #9f7aea;
+/* Border accents now use centralized taxonomy values from Liquid CSS vars */
+.headstone-card {
+  border-left: 4px solid var(--cause-border, var(--border));
 }
 
 /* Featured grave - enhanced */
 .headstone-card.featured {
   border-left-width: 6px;
-  background: linear-gradient(135deg, var(--bg-secondary) 0%, var(--cause-scope-bg) 100%);
+  background: linear-gradient(135deg, var(--bg-secondary) 0%, var(--cause-badge-bg, var(--cause-scope-bg)) 100%);
 }
 
 .headstone-card.featured::after {
@@ -500,9 +480,9 @@ main[role="main"] {
   font-size: 0.65rem;
   font-weight: 600;
   letter-spacing: 0.1em;
-  color: var(--cause-scope);
+  color: var(--cause-badge-fg, var(--cause-scope));
   padding: 0.25rem 0.5rem;
-  background: var(--cause-scope-bg);
+  background: var(--cause-badge-bg, var(--cause-scope-bg));
   border-radius: 100px;
   animation: featured-pulse 3s ease-in-out infinite;
 }
@@ -542,6 +522,8 @@ main[role="main"] {
   border-radius: 100px;
   margin-bottom: 1rem;
   align-self: flex-start;
+  background: var(--cause-badge-bg, var(--cause-theory-bg));
+  color: var(--cause-badge-fg, var(--cause-theory));
   transition: transform var(--duration-fast) var(--ease-out),
               box-shadow var(--duration-fast) var(--ease-out);
 }
@@ -563,36 +545,6 @@ main[role="main"] {
 @keyframes cause-dot-pulse {
   0%, 100% { opacity: 0.6; transform: scale(1); }
   50% { opacity: 1; transform: scale(1.2); }
-}
-
-.headstone-card[data-cause="scope-explosion"] .headstone-cause {
-  background: var(--cause-scope-bg);
-  color: var(--cause-scope);
-}
-
-.headstone-card[data-cause="doubt"] .headstone-cause {
-  background: var(--cause-doubt-bg);
-  color: var(--cause-doubt);
-}
-
-.headstone-card[data-cause="confusion"] .headstone-cause {
-  background: var(--cause-confusion-bg);
-  color: var(--cause-confusion);
-}
-
-.headstone-card[data-cause="theory-trap"] .headstone-cause {
-  background: var(--cause-theory-bg);
-  color: var(--cause-theory);
-}
-
-.headstone-card[data-cause="policy-risk"] .headstone-cause {
-  background: rgba(79, 209, 197, 0.18);
-  color: #4fd1c5;
-}
-
-.headstone-card[data-cause="compatibility-gap"] .headstone-cause {
-  background: rgba(159, 122, 234, 0.18);
-  color: #9f7aea;
 }
 
 /* Project name - subdued like "HERE LIES" */

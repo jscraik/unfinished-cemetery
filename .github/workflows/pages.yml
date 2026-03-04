@@ -38,6 +38,9 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ github.token }}
           GITHUB_OWNER: jscraik
+
+      - name: Lint headstones schema
+        run: ./scripts/lint-headstones.sh --mode ci
       
       - name: Build site
         run: bundle exec jekyll build --baseurl "${{ steps.pages.outputs.base_path }}"

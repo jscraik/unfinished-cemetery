@@ -1,0 +1,50 @@
+schema_version: 1
+
+causes:
+  scope-explosion:
+    label: "Scope Explosion"
+    border_color: "#e94560"
+    badge_bg: "rgba(233, 69, 96, 0.1)"
+    badge_fg: "#e94560"
+
+  doubt:
+    label: "Doubt"
+    border_color: "#f5a623"
+    badge_bg: "rgba(245, 166, 35, 0.1)"
+    badge_fg: "#f5a623"
+
+  confusion:
+    label: "Confusion"
+    border_color: "#a855f7"
+    badge_bg: "rgba(168, 85, 247, 0.1)"
+    badge_fg: "#a855f7"
+
+  theory-trap:
+    label: "Theory Trap"
+    border_color: "#6e7681"
+    badge_bg: "rgba(110, 118, 129, 0.1)"
+    badge_fg: "#6e7681"
+
+  policy-risk:
+    label: "Policy Risk"
+    border_color: "#4fd1c5"
+    badge_bg: "rgba(79, 209, 197, 0.18)"
+    badge_fg: "#4fd1c5"
+
+  compatibility-gap:
+    label: "Compatibility Gap"
+    border_color: "#9f7aea"
+    badge_bg: "rgba(159, 122, 234, 0.18)"
+    badge_fg: "#9f7aea"
+
+  complexity:
+    label: "Complexity"
+    border_color: "#38bdf8"
+    badge_bg: "rgba(56, 189, 248, 0.16)"
+    badge_fg: "#38bdf8"
+
+fallback:
+  label: "Unknown"
+  border_color: "#6e7681"
+  badge_bg: "rgba(110, 118, 129, 0.1)"
+  badge_fg: "#6e7681"

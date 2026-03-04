@@ -15,5 +15,7 @@ jobs:
         with:
           ruby-version: "3.3"
           bundler-cache: true
+      - name: Lint headstones schema
+        run: ./scripts/lint-headstones.sh --mode ci
       - name: Run jekyll test build
         run: bundle exec jekyll build

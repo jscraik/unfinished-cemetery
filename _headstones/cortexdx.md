@@ -4,7 +4,7 @@ birth: 2024-11
 death: 2025-02
 cause: doubt
 tags: [health, cognitive, brain-fog]
-repo: 
+repo: ""
 epitaph: "Brain fog convinced me it was useless. The fog cleared. The doubt remained."
 ---
 
