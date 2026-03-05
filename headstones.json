@@ -13,7 +13,6 @@ permalink: /headstones.json
 {%- assign schema_meta = site.data["headstone-schema"] -%}
 {
   "schema_version": {{ schema_meta.schema_version | default: 1 }},
-  "generated_at": {{ site.time | date_to_xmlschema | jsonify }},
   "items": [
     {%- assign sorted_headstones = site.headstones | sort: 'name' -%}
     {%- assign first_entry = true -%}
@@ -25,8 +24,11 @@ permalink: /headstones.json
       {%- assign is_archived = false -%}
       {%- if headstone.archived == true -%}
         {%- assign is_archived = true -%}
-      {%- elsif repo_name != "" and archived_repo_tokens contains repo_name -%}
-        {%- assign is_archived = true -%}
+      {%- elsif repo_name != "" -%}
+        {%- assign repo_token = "|" | append: repo_name | append: "|" -%}
+        {%- if archived_repo_tokens contains repo_token -%}
+          {%- assign is_archived = true -%}
+        {%- endif -%}
       {%- endif -%}
       {%- unless is_archived -%}{%- continue -%}{%- endunless -%}
 
@@ -76,12 +78,11 @@ permalink: /headstones.json
         "is_revivable": {{ headstone.is_revivable | default: false | jsonify }},
         "is_permanently_dead": {{ headstone.is_permanently_dead | default: false | jsonify }},
         "has_salvaged_code": {{ has_salvaged_code | jsonify }},
-        "lessons": {{ lesson_excerpt | split: "|||" | jsonify }},
+        "lessons": {{ lesson_excerpt | jsonify }},
         "anti_patterns": [{{ headstone.cause | jsonify }}],
         "confidence": {{ confidence_value | jsonify }},
         "repo": {{ headstone.repo | default: "" | jsonify }},
-        "url": {{ headstone.url | relative_url | jsonify }},
-        "last_updated": {{ site.time | date_to_xmlschema | jsonify }}
+        "url": {{ headstone.url | relative_url | jsonify }}
       }
     {%- endfor -%}
   ]
