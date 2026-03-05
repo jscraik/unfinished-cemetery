@@ -7,7 +7,6 @@ tags: [health, cognitive, brain-fog]
 repo: ""
 epitaph: "Brain fog convinced me it was useless. The fog cleared. The doubt remained."
 ---
-
 ## What It Wanted To Be
 
 A diagnostic layer for agent systems — health monitoring for AI cognition. Not just "did the agent succeed" but "is the agent functioning well." Metrics for coherence, drift, confidence calibration, error recovery.
@@ -30,8 +29,7 @@ And when the fog lifted? The doubt stayed. I couldn't look at CortexDx without s
 
 **I didn't trust my own competence.** Even after recovery, I second-guessed every decision. I rewrote instead of refined. I questioned instead of shipped.
 
-## The Lesson
-
+## What Survived
 1. **Health crises will distort judgment.** When cognition falters, everything looks wrong. Don't make decisions during the fog.
 
 2. **Doubt outlasts symptoms.** The fog cleared in weeks. The doubt lingered for months. I needed external validation I never sought.

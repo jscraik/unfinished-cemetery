@@ -1,5 +1,5 @@
 ---
-title: feat: Add schema-validated headstone intelligence layer
+title: "feat: Add schema-validated headstone intelligence layer"
 type: feat
 status: active
 date: 2026-03-04
@@ -155,11 +155,11 @@ erDiagram
 - CI/local validation runbook updates in docs
 
 **Tasks (file-scoped)**
-- [ ] Implement baseline pass/warn/fail checks in `scripts/headstone-preflight.sh`
-- [ ] Implement optional weighted scoring path behind `--experimental-scoring`
-- [ ] Backfill `## What Survived` content in each file under `_headstones/`
-- [ ] Add command examples + expected outputs to `README.md`
-- [ ] Add preflight command to `docs/agents/04-validation.md`
+- [x] Implement baseline pass/warn/fail checks in `scripts/headstone-preflight.sh`
+- [x] Implement optional weighted scoring path behind `--experimental-scoring`
+- [x] Backfill `## What Survived` content in each file under `_headstones/`
+- [x] Add command examples + expected outputs to `README.md`
+- [x] Add preflight command to `docs/agents/04-validation.md`
 
 **Estimated effort**: 1–2 days
 

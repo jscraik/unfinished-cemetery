@@ -8,7 +8,6 @@ repo: https://github.com/jscraik/gKit
 epitaph: "I built more safeguards than I had runway to run." 
 archived: true
 ---
-
 ## What It Wanted To Be
 
 gKit was meant to be a reusable governance layer for agent systems: policies, workflows, and automation that could be dropped into projects to make human + AI collaboration safer and more reliable.
@@ -27,8 +26,7 @@ As the framework matured, the maintenance burden and coordination overhead rose 
 
 I reached the same conclusion as other high-friction projects: the value was real, but the tax to continue was higher than the value I could reliably extract.
 
-## What It Taught Me
-
+## What Survived
 1. **Complex systems need owners, not just vision.** A governance framework is productized policy — if the operating cost is too high, it collapses quickly.
 2. **Pick your ambition for your runway.** Broad guardrail systems are valuable, but they need sustained attention.
 3. **Archiving is a hard decision well made.** Retirement is not failure when continuation threatens the integrity of the work.

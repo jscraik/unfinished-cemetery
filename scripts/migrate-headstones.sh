@@ -63,13 +63,34 @@ Dir.glob(headstones_glob).sort.each do |path|
   body = match[2]
   changed = []
 
-  heading_aliases.each do |from, to|
-    pattern = /^##\s+#{Regexp.escape(from)}\s*$/m
-    next unless body.match?(pattern)
+  canonical_seen = {}
+  body.each_line do |line|
+    heading_match = line.match(/^##\s+(.+?)\s*$/)
+    next unless heading_match
 
-    body = body.gsub(pattern, "## #{to}")
-    changed << "renamed heading '#{from}' -> '#{to}'"
+    heading = heading_match[1]
+    canonical_seen[heading] = true unless heading_aliases.key?(heading)
   end
+
+  rewritten_lines = body.each_line.map do |line|
+    heading_match = line.match(/^##\s+(.+?)\s*$/)
+    next line unless heading_match
+
+    heading = heading_match[1]
+    canonical = heading_aliases[heading]
+    next line if canonical.nil?
+
+    if canonical_seen[canonical]
+      changed << "left secondary heading '#{heading}' unchanged (canonical '#{canonical}' already exists)"
+      line
+    else
+      canonical_seen[canonical] = true
+      changed << "renamed heading '#{heading}' -> '#{canonical}'"
+      "## #{canonical}\n"
+    end
+  end
+
+  body = rewritten_lines.join
 
   canonical_survived = body.match?(/^##\s+What Survived\s*$/)
   unless canonical_survived

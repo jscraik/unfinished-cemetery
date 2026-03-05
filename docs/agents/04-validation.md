@@ -12,7 +12,9 @@ Stop at the first failed validation, fix it, then rerun that gate.
    - `./scripts/lint-headstones.sh --mode warn`
 4. Validate migration safety preview before applying structural heading changes:
    - `./scripts/migrate-headstones.sh --dry-run`
-5. Validate GitHub CLI availability when workflows/scripts depend on it:
+5. Validate project viability preflight (baseline):
+   - `./scripts/headstone-preflight.sh`
+6. Validate GitHub CLI availability when workflows/scripts depend on it:
    - `bash scripts/ensure-gh-cli.sh --check-only`
-6. Validate archived repo JSON when regenerated:
+7. Validate archived repo JSON when regenerated:
    - `jq -e . /Users/jamiecraik/dev/unfinished-cemetery/_data/archived_repos.json`
