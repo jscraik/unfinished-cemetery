@@ -138,12 +138,12 @@ erDiagram
 - New `/Users/jamiecraik/dev/unfinished-cemetery/headstones.json` endpoint (Jekyll-generated)
 
 **Tasks (file-scoped)**
-- [ ] Add initial filter chips/controls in `index.html` for cause, duration, and `has_salvaged_code`
-- [ ] Add staged rollout hooks for `domains`, `is_revivable`, and `is_permanently_dead` after metadata-quality gate passes
-- [ ] Add no-result fallback UX and clear-filter action in `assets/js/filters.js`
-- [ ] Create lessons index page logic in `lessons.md` (deterministic top-3 selection + rationale output)
-- [ ] Add normalized export contract in `headstones.json` (id/slug/tags/lessons/antiPatterns/confidence + stable sorting)
-- [ ] Add nav entry for Lessons in `_includes/header.html`
+- [x] Add initial filter chips/controls in `index.html` for cause, duration, and `has_salvaged_code`
+- [x] Add staged rollout hooks for `domains`, `is_revivable`, and `is_permanently_dead` after metadata-quality gate passes
+- [x] Add no-result fallback UX and clear-filter action in `assets/js/filters.js`
+- [x] Create lessons index page logic in `lessons.md` (deterministic top-3 selection + rationale output)
+- [x] Add normalized export contract in `headstones.json` (id/slug/tags/lessons/antiPatterns/confidence + stable sorting)
+- [x] Add nav entry for Lessons in `_includes/header.html`
 
 **Estimated effort**: 2–3 days
 

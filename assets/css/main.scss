@@ -1090,13 +1090,110 @@ footer[role="contentinfo"] {
   
   .stat-number {
     font-size: 2rem;
-  }
-  
-  .headstone-grid {
+}
+
+.headstone-filters {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(170px, 1fr));
+  gap: 0.9rem;
+  margin: 1.75rem 0 1rem;
+  padding: 1rem;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+  background: var(--bg-secondary);
+}
+
+.filter-row {
+  display: flex;
+  flex-direction: column;
+  gap: 0.45rem;
+}
+
+.filter-row label {
+  font-size: 0.78rem;
+  color: var(--text-secondary);
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+}
+
+.headstone-filters select {
+  background: var(--bg-primary);
+  color: var(--text-primary);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  padding: 0.55rem 0.65rem;
+  font-size: 0.9rem;
+}
+
+.filter-row.actions {
+  justify-content: flex-end;
+}
+
+.filter-summary {
+  color: var(--text-secondary);
+  margin: 0 0 1rem;
+  font-size: 0.9rem;
+}
+
+.filter-empty-state {
+  margin-top: 1rem;
+  border: 1px dashed var(--border);
+  border-radius: var(--radius-md);
+  padding: 1rem;
+  text-align: center;
+  color: var(--text-secondary);
+}
+
+.headstone-grid {
     grid-template-columns: 1fr;
     gap: 1rem;
-  }
-  
+}
+
+.lessons-page select {
+  width: min(420px, 100%);
+  margin: 0.5rem 0 1rem;
+  background: var(--bg-primary);
+  color: var(--text-primary);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  padding: 0.6rem 0.7rem;
+  font-size: 0.92rem;
+}
+
+.lessons-results {
+  display: grid;
+  gap: 1rem;
+  margin-top: 1.25rem;
+}
+
+.lessons-intro {
+  color: var(--text-secondary);
+}
+
+.lesson-card {
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+  background: var(--bg-secondary);
+  padding: 1rem 1.1rem;
+}
+
+.lesson-card h3 {
+  margin-bottom: 0.4rem;
+  font-size: 1.02rem;
+}
+
+.lesson-epitaph {
+  color: var(--text-primary);
+  margin-bottom: 0.45rem;
+}
+
+.lesson-score,
+.lesson-rationale,
+.lessons-empty {
+  color: var(--text-secondary);
+  font-size: 0.9rem;
+}
+
   .headstone-card {
     padding: 1.5rem;
   }

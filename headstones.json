@@ -1,0 +1,88 @@
+---
+layout: null
+permalink: /headstones.json
+---
+{%- assign archived_repos = site.data.archived_repos -%}
+{%- if archived_repos == nil -%}
+  {%- assign archived_repos = "" | split: "," -%}
+{%- endif -%}
+{%- assign archived_repo_tokens = "|" -%}
+{%- for archived_repo in archived_repos -%}
+  {%- assign archived_repo_tokens = archived_repo_tokens | append: archived_repo.name | downcase | append: "|" -%}
+{%- endfor -%}
+{%- assign schema_meta = site.data["headstone-schema"] -%}
+{
+  "schema_version": {{ schema_meta.schema_version | default: 1 }},
+  "generated_at": {{ site.time | date_to_xmlschema | jsonify }},
+  "items": [
+    {%- assign sorted_headstones = site.headstones | sort: 'name' -%}
+    {%- assign first_entry = true -%}
+    {%- for headstone in sorted_headstones -%}
+      {%- assign repo_name = "" -%}
+      {%- if headstone.repo -%}
+        {%- assign repo_name = headstone.repo | split: '/' | last | downcase -%}
+      {%- endif -%}
+      {%- assign is_archived = false -%}
+      {%- if headstone.archived == true -%}
+        {%- assign is_archived = true -%}
+      {%- elsif repo_name != "" and archived_repo_tokens contains repo_name -%}
+        {%- assign is_archived = true -%}
+      {%- endif -%}
+      {%- unless is_archived -%}{%- continue -%}{%- endunless -%}
+
+      {%- assign birth_parts = headstone.birth | split: '-' -%}
+      {%- assign death_parts = headstone.death | split: '-' -%}
+      {%- assign duration_months = nil -%}
+      {%- if birth_parts.size > 1 and death_parts.size > 1 -%}
+        {%- assign duration_months = death_parts[0] | minus: birth_parts[0] | times: 12 | plus: death_parts[1] | minus: birth_parts[1] -%}
+      {%- endif -%}
+
+      {%- assign has_salvaged_code = headstone.has_salvaged_code -%}
+      {%- if has_salvaged_code == nil -%}
+        {%- assign has_salvaged_code = false -%}
+        {%- if headstone.content contains "## What Survived" or headstone.content contains "## The Code That Survived" -%}
+          {%- assign has_salvaged_code = true -%}
+        {%- endif -%}
+      {%- endif -%}
+
+      {%- assign lesson_segment = "" -%}
+      {%- if headstone.content contains "## What Survived" -%}
+        {%- assign lesson_segment = headstone.content | split: "## What Survived" | last -%}
+      {%- elsif headstone.content contains "## What It Taught Me" -%}
+        {%- assign lesson_segment = headstone.content | split: "## What It Taught Me" | last -%}
+      {%- elsif headstone.content contains "## The Lesson" -%}
+        {%- assign lesson_segment = headstone.content | split: "## The Lesson" | last -%}
+      {%- endif -%}
+      {%- assign lesson_excerpt = lesson_segment | split: "## " | first | strip_html | strip_newlines | strip | truncate: 220 -%}
+      {%- if lesson_excerpt == "" -%}
+        {%- assign lesson_excerpt = headstone.epitaph | default: "" | strip_newlines | strip -%}
+      {%- endif -%}
+
+      {%- assign confidence_value = headstone.confidence | default: 0.6 -%}
+      {%- assign slug_value = headstone.slug | default: headstone.name | slugify -%}
+
+      {%- unless first_entry -%},{%- endunless -%}
+      {%- assign first_entry = false -%}
+      {
+        "id": {{ slug_value | jsonify }},
+        "name": {{ headstone.name | jsonify }},
+        "slug": {{ slug_value | jsonify }},
+        "cause": {{ headstone.cause | jsonify }},
+        "tags": {{ headstone.tags | default: empty | jsonify }},
+        "domains": {{ headstone.domains | default: empty | jsonify }},
+        "duration_months": {{ duration_months | default: "null" }},
+        "birth": {{ headstone.birth | jsonify }},
+        "death": {{ headstone.death | jsonify }},
+        "is_revivable": {{ headstone.is_revivable | default: false | jsonify }},
+        "is_permanently_dead": {{ headstone.is_permanently_dead | default: false | jsonify }},
+        "has_salvaged_code": {{ has_salvaged_code | jsonify }},
+        "lessons": {{ lesson_excerpt | split: "|||" | jsonify }},
+        "anti_patterns": [{{ headstone.cause | jsonify }}],
+        "confidence": {{ confidence_value | jsonify }},
+        "repo": {{ headstone.repo | default: "" | jsonify }},
+        "url": {{ headstone.url | relative_url | jsonify }},
+        "last_updated": {{ site.time | date_to_xmlschema | jsonify }}
+      }
+    {%- endfor -%}
+  ]
+}
