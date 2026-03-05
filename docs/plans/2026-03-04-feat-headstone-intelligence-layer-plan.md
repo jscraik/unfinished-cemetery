@@ -1,7 +1,7 @@
 ---
 title: "feat: Add schema-validated headstone intelligence layer"
 type: feat
-status: active
+status: completed
 date: 2026-03-04
 ---
 
