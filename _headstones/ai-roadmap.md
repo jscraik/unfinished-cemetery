@@ -8,7 +8,6 @@ repo: https://github.com/jscraik/ai-engineering-roadmap
 epitaph: "I thought planning would teach me. Doing would have been faster."
 archived: true
 ---
-
 ## What It Wanted To Be
 
 An exhaustive, ordered curriculum for learning AI engineering. Every concept mapped, every resource linked, every dependency traced. A complete path from "what's a transformer" to "shipping production LLM systems."
@@ -29,16 +28,14 @@ By the time I had the "perfect" curriculum, I had built nothing. And the field h
 
 **Learning by building > building a learning plan.** Ralph Gold taught me this by accident. I didn't plan it. I just started. I learned by shipping broken code, not by reading about best practices.
 
-## The Lesson
-
+## What Survived
 1. **Start before you're ready.** The first 20% of knowledge gets you 80% of capability. The rest comes from doing.
 
 2. **Plans are for revising, not following.** A rigid roadmap is a liability in a fast-moving field. Build, then adjust.
 
 3. **The best curriculum is the one you finish.** Perfect sequencing that you never execute is worse than messy execution.
 
-## The Irony
-
+## Reflection
 The "AI Engineering Roadmap" I never finished? A dozen better ones have been published since. By people who shipped first and iterated.
 
 Planning is not a substitute for doing.

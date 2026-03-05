@@ -8,7 +8,6 @@ repo: https://github.com/jscraik/CortexAs
 epitaph: "I got confused and never returned to untangle it."
 archived: true
 ---
-
 ## What It Wanted To Be
 
 An autonomous system for managing agent infrastructure — self-healing, self-optimizing, self-organizing. The "as" stood for "as a service" but also "autonomous system." I thought I was being clever.
@@ -37,8 +36,7 @@ More research. More prototyping. More indecision.
 
 **I never returned.** I told myself I'd "come back to it fresh." I never did. The confusion calcified into abandonment.
 
-## The Lesson
-
+## What Survived
 1. **Default decisions.** When stuck, pick the boring option. Pull over push. YAML over TOML. Boring is better than stuck.
 
 2. **Reversible decisions don't matter.** Most choices aren't architecture — they're implementation. Change them later.
@@ -47,8 +45,7 @@ More research. More prototyping. More indecision.
 
 4. **Schedule the return.** "I'll come back to it" means "I'm abandoning it." Put a calendar event on it. Show up.
 
-## The Aftermath
-
+## Aftermath
 CortexAs sits in a private repo, 60% done, every decision unresolved. Sometimes I open it, stare at the code, close it again.
 
 The confusion won. I should have shipped with imperfect choices. Instead, I shipped nothing.

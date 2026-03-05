@@ -8,7 +8,6 @@ repo: https://github.com/jscraik/cortex-os
 epitaph: "An 'agentic second brain' sounded possible. It wasn't. Not yet."
 archived: true
 ---
-
 ## What It Wanted To Be
 
 Cortex-OS was conceived as an **AI-native operating system** for agent workflows. Not an OS in the traditional sense, but an orchestration layer that would manage multiple AI agents, their state, their memory, and their interactions.
@@ -41,8 +40,7 @@ I was building a platform before I understood the tools. I hadn't felt the pain 
 
 **Platform projects need 10x more focus than tool projects.** I was working 15-25 hours per week. That's enough for a focused tool. Not enough for an operating system.
 
-## What It Taught Me
-
+## What Survived
 1. **Build tools first, platforms second.** Ralph Gold taught me this by accident. Tools solve specific problems. Platforms abstract too early.
 
 2. **Feel the pain before designing the cure.** I was designing solutions to problems I imagined, not problems I'd experienced.
@@ -51,8 +49,7 @@ I was building a platform before I understood the tools. I hadn't felt the pain 
 
 4. **Agent-native was the right instinct, wrong timing.** Six months later, the ecosystem caught up. But I spent my energy on Cortex-OS instead of waiting and watching.
 
-## The Code That Survived
-
+## Survivors in Production
 Some concepts from Cortex-OS live on in:
 - **Ralph Gold's** state management
 - **Recon Workbench's** async patterns

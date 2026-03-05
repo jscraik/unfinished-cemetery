@@ -16,6 +16,7 @@ layout: default
 {%- assign archived_headstone_count = 0 -%}
 {%- assign total_months = 0 -%}
 {%- assign archived_causes = "" -%}
+{%- assign headstone_taxonomy = site.data["headstone-taxonomy"] -%}
 
 {%- for headstone in site.headstones -%}
   {%- assign repo_name = "" -%}
@@ -74,7 +75,43 @@ layout: default
   </div>
 </div>
 
-<div class="headstone-grid">
+<section class="headstone-filters" aria-label="Filter archived projects">
+  <div class="filter-row">
+    <label for="filter-cause">Cause</label>
+    <select id="filter-cause" data-filter-control="cause">
+      <option value="">All causes</option>
+      {%- for cause_key in archived_causes_array -%}
+        {%- assign taxonomy_entry = headstone_taxonomy.causes[cause_key] -%}
+        <option value="{{ cause_key }}">{{ taxonomy_entry.label | default: cause_key | replace: '-', ' ' | capitalize }}</option>
+      {%- endfor -%}
+    </select>
+  </div>
+  <div class="filter-row">
+    <label for="filter-duration">Duration</label>
+    <select id="filter-duration" data-filter-control="duration">
+      <option value="">All durations</option>
+      <option value="short">0-2 months</option>
+      <option value="medium">3-6 months</option>
+      <option value="long">7+ months</option>
+      <option value="unknown">Unknown</option>
+    </select>
+  </div>
+  <div class="filter-row">
+    <label for="filter-salvaged">Salvaged code</label>
+    <select id="filter-salvaged" data-filter-control="salvaged">
+      <option value="">Any</option>
+      <option value="true">Has salvage</option>
+      <option value="false">No salvage documented</option>
+    </select>
+  </div>
+  <div class="filter-row actions">
+    <button type="button" class="page-link" data-filter-clear>Clear filters</button>
+  </div>
+</section>
+
+<p class="filter-summary" id="filter-summary" aria-live="polite">Showing all archived projects.</p>
+
+<div class="headstone-grid" id="headstone-grid">
   {%- for headstone in site.headstones -%}
     {%- assign repo_name = "" -%}
     {%- if headstone.repo -%}
@@ -97,13 +134,48 @@ layout: default
     {%- if headstone.featured == true or headstone.name == "Cortex-OS" -%}
       {%- assign is_featured = true -%}
     {%- endif -%}
-    <a href="{{ headstone.url | relative_url }}" class="headstone-card{% if is_featured %} featured{% endif %}" data-cause="{{ headstone.cause }}">
+    {%- assign cause_style = headstone_taxonomy.causes[headstone.cause] -%}
+    {%- if cause_style == nil -%}
+      {%- assign cause_style = headstone_taxonomy.fallback -%}
+    {%- endif -%}
+    {%- assign duration_months = "" -%}
+    {%- assign duration_bucket = "unknown" -%}
+    {%- assign birth_parts = headstone.birth | split: '-' -%}
+    {%- assign death_parts = headstone.death | split: '-' -%}
+    {%- if birth_parts.size > 1 and death_parts.size > 1 -%}
+      {%- assign duration_months = death_parts[0] | minus: birth_parts[0] | times: 12 | plus: death_parts[1] | minus: birth_parts[1] -%}
+      {%- if duration_months <= 2 -%}
+        {%- assign duration_bucket = "short" -%}
+      {%- elsif duration_months <= 6 -%}
+        {%- assign duration_bucket = "medium" -%}
+      {%- else -%}
+        {%- assign duration_bucket = "long" -%}
+      {%- endif -%}
+    {%- endif -%}
+    {%- assign has_salvaged_code = headstone.has_salvaged_code -%}
+    {%- if has_salvaged_code == nil -%}
+      {%- assign has_salvaged_code = false -%}
+      {%- if headstone.content contains "## What Survived" or headstone.content contains "## The Code That Survived" -%}
+        {%- assign has_salvaged_code = true -%}
+      {%- endif -%}
+    {%- endif -%}
+    {%- assign domains_csv = headstone.domains | join: "|" | downcase -%}
+    <a href="{{ headstone.url | relative_url }}"
+       class="headstone-card{% if is_featured %} featured{% endif %}"
+       data-cause="{{ headstone.cause }}"
+       data-duration-bucket="{{ duration_bucket }}"
+       data-duration-months="{{ duration_months }}"
+       data-has-salvaged-code="{{ has_salvaged_code }}"
+       data-domains="{{ domains_csv }}"
+       data-is-revivable="{{ headstone.is_revivable | default: '' }}"
+       data-is-permanently-dead="{{ headstone.is_permanently_dead | default: '' }}"
+       style="--cause-border: {{ cause_style.border_color }}; --cause-badge-bg: {{ cause_style.badge_bg }}; --cause-badge-fg: {{ cause_style.badge_fg }};">
       <div class="headstone-epitaph">
         {{ headstone.epitaph }}
       </div>
       <h2>{{ headstone.name }}</h2>
       <p class="headstone-dates">{{ headstone.birth }} — {{ headstone.death }}</p>
-      <span class="headstone-cause">{{ headstone.cause | replace: '-', ' ' | capitalize }}</span>
+      <span class="headstone-cause">{{ cause_style.label | default: headstone.cause | replace: '-', ' ' | capitalize }}</span>
     </a>
   {%- endfor -%}
 
@@ -114,7 +186,16 @@ layout: default
       {%- unless headstone_repo_names contains repo_token -%}
         {%- assign repo_created = repo.created_at | date: '%Y-%m' -%}
         {%- assign repo_updated = repo.updated_at | date: '%Y-%m' -%}
-        <a href="{{ repo.html_url }}" class="headstone-card missing" data-cause="archived">
+        <a href="{{ repo.html_url }}"
+           class="headstone-card missing"
+           data-cause="archived"
+           data-duration-bucket="unknown"
+           data-duration-months=""
+           data-has-salvaged-code="false"
+           data-domains=""
+           data-is-revivable=""
+           data-is-permanently-dead=""
+           style="--cause-border: {{ headstone_taxonomy.fallback.border_color }}; --cause-badge-bg: {{ headstone_taxonomy.fallback.badge_bg }}; --cause-badge-fg: {{ headstone_taxonomy.fallback.badge_fg }};">
           <div class="headstone-epitaph">
             {{ repo.description | default: "An archived project with no headstone yet." }}
           </div>
@@ -125,4 +206,9 @@ layout: default
       {%- endunless -%}
     {%- endfor -%}
   {%- endif -%}
+</div>
+
+<div class="filter-empty-state" id="filter-empty-state" hidden>
+  <p>No archived projects matched your filters.</p>
+  <button type="button" class="page-link" data-filter-clear>Show all projects</button>
 </div>

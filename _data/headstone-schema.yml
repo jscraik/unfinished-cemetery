@@ -1,0 +1,63 @@
+schema_version: 1
+
+required_frontmatter:
+  - name
+  - birth
+  - death
+  - cause
+  - tags
+  - repo
+  - epitaph
+
+optional_frontmatter:
+  - archived
+  - featured
+  - domains
+  - is_revivable
+  - is_permanently_dead
+  - has_salvaged_code
+  - confidence
+
+field_types:
+  name: string
+  birth: yyyy-mm
+  death: yyyy-mm
+  cause: enum
+  tags: string_array
+  repo: string_or_empty
+  epitaph: string
+  archived: boolean
+  featured: boolean
+  domains: string_array
+  is_revivable: boolean
+  is_permanently_dead: boolean
+  has_salvaged_code: boolean
+  confidence: float_0_1
+
+enums:
+  cause:
+    - scope-explosion
+    - doubt
+    - confusion
+    - theory-trap
+    - policy-risk
+    - compatibility-gap
+    - complexity
+
+required_sections:
+  - "What It Wanted To Be"
+  - "What Actually Happened"
+  - "Why It Died"
+  - "What Survived"
+
+heading_aliases:
+  "What It Taught Me": "What Survived"
+  "The Lesson": "What Survived"
+  "The Code That Survived": "What Survived"
+  "The Irony": "What Survived"
+  "The Aftermath": "What Survived"
+
+migration:
+  alias_warning_mode: true
+  alias_accepted_until: "2026-06-30"
+  strict_mode_for_changed_files_from: "2026-04-01"
