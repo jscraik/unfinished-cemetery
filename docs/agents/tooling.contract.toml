@@ -1,0 +1,30 @@
+schema_version = 1
+title = "Unfinished Cemetery tooling contract"
+
+[required]
+mise_tools = ["ruby"]
+bins = ["git", "bash", "sed", "rg", "jq", "mise", "ruby", "bundle", "python3"]
+
+[[codex_actions]]
+name = "Tooling"
+icon = "tool"
+
+[[codex_actions]]
+name = "Preflight"
+icon = "tool"
+
+[[codex_actions]]
+name = "Install deps"
+icon = "tool"
+
+[[codex_actions]]
+name = "Build site"
+icon = "tool"
+
+[[codex_actions]]
+name = "Headstone preflight"
+icon = "tool"
+
+[[codex_actions]]
+name = "Run site"
+icon = "run"
