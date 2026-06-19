@@ -19,13 +19,15 @@ if command -v mise >/dev/null 2>&1; then
 fi
 if [[ -f scripts/prepare-worktree.sh ]]; then
   bash scripts/prepare-worktree.sh
-else
+elif [[ -f Gemfile ]]; then
+  bundle install
+elif [[ -f package.json ]]; then
   npm install
 fi
 '''
 
 [[actions]]
-name = "Tools"
+name = "Tooling"
 icon = "tool"
 command = '''
 set -euo pipefail
@@ -43,39 +45,56 @@ if command -v mise >/dev/null 2>&1; then
 fi
 if [[ -f scripts/prepare-worktree.sh ]]; then
   bash scripts/prepare-worktree.sh
-else
+elif [[ -f Gemfile ]]; then
+  bundle install
+elif [[ -f package.json ]]; then
   npm install
 fi
 '''
 
 [[actions]]
-name = "Run"
+name = "Run site"
 icon = "run"
 command = '''
 set -euo pipefail
 
-echo "[codex] no run script found in package.json"
-exit 1
+bundle exec jekyll serve
 '''
 
 [[actions]]
-name = "Debug"
-icon = "debug"
+name = "Preflight"
+icon = "tool"
 command = '''
 set -euo pipefail
 
-echo "[codex] no debug script found in package.json"
-exit 1
+bash scripts/codex-preflight.sh
 '''
 
 [[actions]]
-name = "Test"
-icon = "test"
+name = "Build site"
+icon = "tool"
 command = '''
 set -euo pipefail
 
-echo "[codex] no test script found in package.json"
-exit 1
+bundle exec jekyll build
+'''
+
+[[actions]]
+name = "Install deps"
+icon = "tool"
+command = '''
+set -euo pipefail
+
+bundle install
+'''
+
+[[actions]]
+name = "Headstone preflight"
+icon = "tool"
+command = '''
+set -euo pipefail
+
+bash scripts/headstone-preflight.sh
 '''
 
 [[actions]]
