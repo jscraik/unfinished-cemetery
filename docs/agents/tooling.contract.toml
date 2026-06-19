@@ -3,7 +3,7 @@ title = "Unfinished Cemetery tooling contract"
 
 [required]
 mise_tools = ["ruby"]
-bins = ["git", "bash", "sed", "rg", "jq", "mise", "ruby", "bundle"]
+bins = ["git", "bash", "sed", "rg", "jq", "mise", "ruby", "bundle", "python3"]
 
 [[codex_actions]]
 name = "Tooling"

@@ -23,6 +23,7 @@ This document lists only the tooling items enforced by `scripts/check-environmen
 - `mise`
 - `ruby`
 - `bundle`
+- `python3`
 
 ## Required Codex actions
 - `Tooling` (icon: `tool`)

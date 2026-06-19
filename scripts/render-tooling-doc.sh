@@ -14,8 +14,23 @@ if [[ ! -f "$CONTRACT_PATH" ]]; then
   exit 1
 fi
 
+TOML_PYTHON=()
+for candidate in python3.13 python3.12 python3.11 python3; do
+  if command -v "$candidate" >/dev/null 2>&1 && "$candidate" -c 'import sys; raise SystemExit(0 if sys.version_info >= (3, 11) else 1)'; then
+    TOML_PYTHON=("$candidate")
+    break
+  fi
+done
+if [[ "${#TOML_PYTHON[@]}" -eq 0 ]] && command -v uv >/dev/null 2>&1; then
+  TOML_PYTHON=(uv run --python 3.12 python)
+fi
+if [[ "${#TOML_PYTHON[@]}" -eq 0 ]]; then
+  echo "Error: Python 3.11+ or uv is required to parse TOML tooling contracts" >&2
+  exit 1
+fi
+
 render_markdown() {
-  python3 - "$CONTRACT_PATH" <<'PY'
+  "${TOML_PYTHON[@]}" - "$CONTRACT_PATH" <<'PY'
 import sys
 import tomllib
 from pathlib import Path

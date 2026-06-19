@@ -13,6 +13,21 @@ RENDER_TOOLING_DOC_SCRIPT="$REPO_ROOT/scripts/render-tooling-doc.sh"
 
 cd "$REPO_ROOT"
 
+TOML_PYTHON=()
+for candidate in python3.13 python3.12 python3.11 python3; do
+  if command -v "$candidate" >/dev/null 2>&1 && "$candidate" -c 'import sys; raise SystemExit(0 if sys.version_info >= (3, 11) else 1)'; then
+    TOML_PYTHON=("$candidate")
+    break
+  fi
+done
+if [[ "${#TOML_PYTHON[@]}" -eq 0 ]] && command -v uv >/dev/null 2>&1; then
+  TOML_PYTHON=(uv run --python 3.12 python)
+fi
+if [[ "${#TOML_PYTHON[@]}" -eq 0 ]]; then
+  echo "Error: Python 3.11+ or uv is required to parse TOML tooling contracts" >&2
+  exit 1
+fi
+
 required_files=(
   "$MISE_PATH"
   "$CODEX_ENVIRONMENT_PATH"
@@ -32,7 +47,7 @@ done
 source "$REPO_ROOT/scripts/codex-preflight.sh"
 
 mapfile -t REQUIRED_MISE_TOOLS < <(
-  python3 - "$TOOLING_CONTRACT_PATH" <<'PY'
+  "${TOML_PYTHON[@]}" - "$TOOLING_CONTRACT_PATH" <<'PY'
 import sys
 import tomllib
 from pathlib import Path
@@ -45,7 +60,7 @@ PY
 )
 
 mapfile -t REQUIRED_BINS < <(
-  python3 - "$TOOLING_CONTRACT_PATH" <<'PY'
+  "${TOML_PYTHON[@]}" - "$TOOLING_CONTRACT_PATH" <<'PY'
 import sys
 import tomllib
 from pathlib import Path
@@ -58,7 +73,7 @@ PY
 )
 
 mapfile -t REQUIRED_CODEX_ACTIONS < <(
-  python3 - "$TOOLING_CONTRACT_PATH" <<'PY'
+  "${TOML_PYTHON[@]}" - "$TOOLING_CONTRACT_PATH" <<'PY'
 import sys
 import tomllib
 from pathlib import Path
